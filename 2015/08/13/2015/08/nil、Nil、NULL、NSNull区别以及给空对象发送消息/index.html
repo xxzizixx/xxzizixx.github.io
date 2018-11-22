@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>nil、Nil、NULL、NSNull区别以及给空对象发送消息 | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="nil、Nil、NULL、NSNull区别以及给空对象发送消息 | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="nil、Nil、NULL、NSNull区别以及给空对象发送消息 | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2015/08/13/2015/08/nil、Nil、NULL、NSNull区别以及给空对象发送消息/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="gg" title="我的微博" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-08-13T06:37:03.000Z" class="post-list__meta--date date">2015-08-13</time> &#8226; <span class="post-meta__tags tags"> 
+  
+ </span>
+    </div>
+    <h1 class="post-title">nil、Nil、NULL、NSNull区别以及给空对象发送消息</h1>
+  </header>
+
+  <section class="post">
+    <p>首先，OC中向nil发消息，程序是不会崩溃的。因为OC的函数调用都是通过objc_msgSend进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接返回，所以不会出现问题。视方法返回值，向nil发消息可能会返回nil(返回值为对象)、0（返回值为一些基础数据类型）或0X0（返回值为id）等。<br>但是对[NSNull null]对象发送消息时，是会crash的，因为这个NSNull类只有一个null方法。<br>当然，如果一个对象已经被释放了（引用计数为0了），那么这个时候再去调用方法肯定是会Crash的，因为这个时候这个对象就是一个野指针（指向僵尸对象（对象的引用计数为0，指针指向的内存已经不可用）的指针）了，安全的做法是释放后将对象重新置为nil，使它成为一个空指针，大家可以在关闭ARC后手动release对象验证一下。</p>
+<h2 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h2><p>nil的定义是null pointer to object-c object，指的是一个OC对象指针为空，本质就是(id)0，是OC对象的字面0值。</p>
+<p>不过这里有必要提一点就是OC中给空指针发消息不会崩溃的语言特性，原因是OC的函数调用都是通过objc_msgSend进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接返回，所以不会出现问题。</p>
+<p>这里补充一点，如果一个对象已经被释放了，那么这个时候再去调用方法肯定是会Crash的，因为这个时候这个对象就是一个野指针了，安全的做法是释放后将对象重新置为nil，使它成为一个空指针，大家可以在关闭ARC后手动release对象验证一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">NSString *name = @&quot;Allen&quot;;</span><br><span class="line"></span><br><span class="line">if (name != nil &amp;&amp; [name isEqualToString:@&quot;Allen&quot;]) &#123;</span><br><span class="line">NSLog(@&quot;name: %@&quot;, name);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSLog(@&quot;name is nil&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//or</span><br><span class="line">if ([name isEqualToString:@&quot;Allen&quot;]) &#123;</span><br><span class="line">NSLog(@&quot;name: %@&quot;, name);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSLog(@&quot;name is nil&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的两种判断都是正确的，我们不必担心当name为nil时调用isEqualToString会出现Crash，但是我还是想说，在使用一个对象之前判断它是否为nil是一个很好的习惯，个人觉得有两个原因:</p>
+<p>降低时间复杂度（感觉可以这么说吧），如果你增加了nil的判断，那么不需要对空指针发送消息了，发消息其实是件费时的操作。详情可以看这里<br>把判断为空养成习惯其实是好事，这样在你切换语言时也不容易出错。</p>
+<h2 id="Nil"><a href="#Nil" class="headerlink" title="Nil"></a>Nil</h2><p>Nil的定义是null pointer to object-c class，指的是一个类指针为空。本质就是(class)0，OC类的字面零值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class class = [NSString class];</span><br><span class="line">if (class != Nil) &#123;</span><br><span class="line">NSLog(@&quot;class name: %@&quot;, class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h2><p>NULL的定义是null pointer to primitive type or absence of data，指的是一般的基础数据类型为空，可以给任意的指针赋值。本质就是(void *)0，是C指针的字面0值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSInteger *pointerA = NULL; </span><br><span class="line">NSInteger pointerB = 10; </span><br><span class="line">pointerA = &amp;pointerB; </span><br><span class="line">NSLog(@”%ld”, *pointerA);</span><br></pre></td></tr></table></figure></p>
+<p>我们要尽量不去将NULL初始化OC对象，可能会产生一些异常的错误，要使用nil，NULL主要针对基础数据类型。</p>
+<h2 id="NSNull"><a href="#NSNull" class="headerlink" title="NSNull"></a>NSNull</h2><p>NSNull好像没有什么具体的定义（懵），它包含了唯一一个方法+(NSNull*)null，[NSNull null]是一个对象，用来表示零值的单独的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init]; </span><br><span class="line">NSString *nameOne = @”Allen”; </span><br><span class="line">NSString *nameTwo = [NSNull null]; // 不用使用 nil，nil在字典，数组中有特殊含义–元素结束标记</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NSString *nameThree = @&quot;Tom&quot;;</span><br><span class="line">[dictionary setObject:nameOne forKey:@&quot;nameOne&quot;];</span><br><span class="line">[dictionary setObject:nameTwo forKey:@&quot;nameTwo&quot;];</span><br><span class="line">[dictionary setObject:nameThree forKey:@&quot;nameThree&quot;];</span><br><span class="line">NSLog(@&quot;names: %@&quot;, dictionary);</span><br><span class="line"></span><br><span class="line">NSMutableArray *array = [[NSMutableArray alloc] init];</span><br><span class="line">[array addObject:nameOne];</span><br><span class="line">[array addObject:nameTwo];</span><br><span class="line">[array addObject:nameThree];</span><br><span class="line">NSLog(@&quot;names : %@&quot;, array);</span><br></pre></td></tr></table></figure>
+<p>NSNull主要用在不能使用nil的场景下，比如NSMutableArray是以nil作为数组结尾判断的，所以如果想插入一个空的对象就不能使用nil, NSMutableDictionary也是类似，我们不能使用nil作为一个object，而要使用NSNull。</p>
+<h2 id="向nil发送消息不Crash的原因："><a href="#向nil发送消息不Crash的原因：" class="headerlink" title="向nil发送消息不Crash的原因："></a>向nil发送消息不Crash的原因：</h2><p>向nil发送消息:<br>在Objective-C中向nil发送消息是完全有效的——只是在运行时不会有任何作用。Cocoa中的几种模式就利用到了这一点。发向nil的消息的返回值也可以是有效的:<br>• 如果一个方法返回值是一个对象，那么发送给nil的消息将返回0(nil)。例如：Person _ motherInlaw = [ aPerson spouse] mother]; 如果spouse对象为nil，那么发送给nil的消息mother也将返回nil。<br>• 如果方法返回值为指针类型，其指针大小为小于或者等于sizeof(void_)，float，double，long double 或者long long的整型标量，发送给nil的消息将返回0。<br>• 如果方法返回值为结构体，正如在《Mac OS X ABI 函数调用指南》，发送给nil的消息将返回0。结构体中各个字段的值将都是0。其他的结构体数据类型将不是用0填充的。<br>• 如果方法的返回值不是上述提到的几种情况，那么发送给nil的消息的返回值将是未定义的。    </p>
+<h2 id="理解一下nil，NULL和-NSNull-null-的区别："><a href="#理解一下nil，NULL和-NSNull-null-的区别：" class="headerlink" title="理解一下nil，NULL和[NSNull null]的区别："></a>理解一下nil，NULL和[NSNull null]的区别：</h2><p>nil用来给对象赋值（Objective-C中的任何对象都属于id类型），NULL则给任何指针赋值，NULL和nil不能互换，nil用于类指针赋值（在Objective-C中类也是一个对象，是类的meta-class的实例，有关meta-class参见资料<a href="http://www.cocoachina.com/industry/20131210/7508.html" target="_blank" rel="noopener">【译】Objective-C 中的 Meta-class 是什么？）</a>， 而NSNull则用于集合操作，用在数组或字典中要添加某个内容为空的情况。<br>虽然它们表示的都是空值，但使用的场合完全不同。所以在编码时严格按照变量类型来赋值，将正确的空值赋给正确的类型，使代码易于阅读和维护，也不易引起错误。<br>示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">id object = nil;  </span><br><span class="line">// 判断对象不为空  </span><br><span class="line">if (object) &#123;  </span><br><span class="line">&#125;       </span><br><span class="line">// 判断对象为空  </span><br><span class="line">if (object == nil) &#123;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">// 数组初始化，空值结束  </span><br><span class="line">NSArray *array = [[NSArray alloc] initWithObjects:@&quot;First&quot;, @&quot;Second&quot;, nil];  </span><br><span class="line">// 判断数组元素是否为空  </span><br><span class="line">NSString *element = [array objectAtIndex:2];  </span><br><span class="line">if ((NSNull *)element == [NSNull null]) &#123;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">//做项目时遇到，要判断数组元素是否为空，以下写法，都无效</span><br><span class="line">if(!element)</span><br><span class="line">if([element length]&gt;0)</span><br><span class="line">if(element == NULL)</span><br><span class="line">if(element == nil)</span><br><span class="line"></span><br><span class="line">// 判断字典对象的元素是否为空  </span><br><span class="line">NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:  </span><br><span class="line">@&quot;iPhone&quot;, @&quot;First&quot;, @&quot;iPad&quot;, @&quot;Second&quot;, nil];  </span><br><span class="line">NSString *value = [dictionary objectForKey:@&quot;First&quot;];  </span><br><span class="line">if ((NSNull *)value == [NSNull null]) &#123;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h4><ol>
+<li>nil：一般赋值给空对象；</li>
+<li><p>NULL：一般赋值给nil之外的其他空值。如SEL等，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[NSApp beginSheet:sheet modalForWindow:mainWindow</span><br><span class="line">modalDelegate:nil     // 使用nil指向一个空对象</span><br><span class="line">didEndSelector:NULL    // 指向空</span><br><span class="line">　　contextInfo:NULL];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当向nil发送消息时，不会有异常，程序将继续执行下去；</p>
+</li>
+<li>而向NSNull的对象发送消息时会收到异常，因为NSNull只有一个方法：+ (NSNull *) null;，会“没有这样的selector”的错误。 [NSNull null]是一个对象，他用在不能使用nil的场合。因为在NSArray和NSDictionary中nil有特殊的含义。但是在有些时候，确实需要用到这样的空值，比如在字典中，电话簿中”Jack”关键字下有电话号码、家庭住址、Email等等信息，但是现在只知道他的电话号码，这种不知道其他信息的情况下为了消除一些歧义，有必要将它们设置为空，所以Cocoa提供了NSNull类。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[dictionary setObject:[NSNull null], forKey:&quot;Email&quot;];</span><br><span class="line">if(EmailAdress == [NSNull null]) &#123;</span><br><span class="line">　　//to do something...</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为Object-C的集合对象，如NSArray、NSDictionary、NSSet等，都有可能包含NSNull对象，所以，如果以下代码中的item为NSNull，则会引起程序崩溃：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NSString *item=[NSArray objectAtIndex:i];</span><br><span class="line">if([item isEqualToString:@&quot;TestNumber&quot;]) &#123;</span><br><span class="line">// do someThing</span><br><span class="line">&#125;</span><br><span class="line">// 以下代码是常见的错误，release对象没有设置为nil，从而引起程序崩溃。</span><br><span class="line">id someObject=[[Object alloc] init];</span><br><span class="line">//...</span><br><span class="line">[someObject release];</span><br><span class="line">//...</span><br><span class="line">if(someObject) &#123;</span><br><span class="line">//crash here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面会发生常见的“EXC_BAD_ACCESS”错误，也就是野指针错误。因为someObject指针指向的那块内存的引用计数已经为0了，所以那块内存已经不可以访问了，但是someObject指针并没有设为nil，所以会报野指针错误，那块内存地址中的僵尸对象已经无法使用。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/03/11/2016/03/浅谈MVVM框架，以及如何去写MVVM/" title="浅谈MVVM框架，以及如何去写MVVM">浅谈MVVM框架，以及如何去写MVVM</a></h2>
+                <p class="excerpt">
+                
+                对于MVVM框架，大家应该并不陌生，如果对这方面还不清楚的，可以去看一下一下三篇文章，应该会有一个比较清楚的认识。
+MVVM奇葩说被误解的 MVC 和被神化的 MVVMiOS 架构模式–解密 MVC，MVP，MVVM以及VIPER架构
+读了这三篇文章，你应该就不会对MVVM陌生了， 我这里算是对以上
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-03-11T03:24:17.000Z" class="post-list__meta--date date">2016-03-11</time> &#8226; <span class="post-list__meta--tags tags"> </span><a class="btn-border-small" href="/2016/03/11/2016/03/浅谈MVVM框架，以及如何去写MVVM/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/" title="Copy修饰和深浅复制以及NSMutableObject的修饰词">Copy修饰和深浅复制以及NSMutableObject的修饰词</a></h2>
+                <p class="excerpt">
+                
+                先说结论1：对于不可变对象，copy都是浅复制，即指针复制。mutableCopy 都是alloc一个新对象返回。2：对于可变对象，copy和mutableCopy都是alloc新对象返回。3：不论是可变还是不可变对象，copy返回的对象都是不可变的，mutableCopy返回的对象都是可变的。4：
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2015-07-07T09:44:04.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

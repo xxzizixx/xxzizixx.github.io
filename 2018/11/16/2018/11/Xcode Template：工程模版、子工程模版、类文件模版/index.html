@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Xcode Template：工程模版、子工程模版、类文件模版 | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Xcode Template：工程模版、子工程模版、类文件模版 | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Xcode Template：工程模版、子工程模版、类文件模版 | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/11/16/2018/11/Xcode Template：工程模版、子工程模版、类文件模版/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="gg" title="我的微博" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-11-16T06:57:41.000Z" class="post-list__meta--date date">2018-11-16</time> &#8226; <span class="post-meta__tags tags">  </span>
+    </div>
+    <h1 class="post-title">Xcode Template：工程模版、子工程模版、类文件模版</h1>
+  </header>
+
+  <section class="post">
+    <h1 id="一、前序"><a href="#一、前序" class="headerlink" title="一、前序"></a>一、前序</h1><p>一直准备写一篇关于Xcode Template模版制作的文章，昨天听同事提到Xcode Template，并决定抽时间写一篇关于Xcode Template制作的文章，文章包括三部分：</p>
+<ul>
+<li>为什么要定义这些模版</li>
+<li>Xcode工程模版和子工程模版</li>
+<li>Xcode的类文件模版</li>
+</ul>
+<h1 id="二、为什么要定义这些模版"><a href="#二、为什么要定义这些模版" class="headerlink" title="二、为什么要定义这些模版"></a>二、为什么要定义这些模版</h1><p>遵守代码规范可以提高代码可读性, 降低后期维护成本. 当我们定下了一个团队都认同的代码规范, 如我们要求所有的viewController的代码都得按照下面来组织:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - define / static</span><br><span class="line">#pragma mark - override</span><br><span class="line">#pragma mark - api request</span><br><span class="line">#pragma mark - view config</span><br><span class="line">#pragma mark - model event </span><br><span class="line">#pragma mark - private</span><br><span class="line">#pragma mark - datasource</span><br><span class="line">#pragma mark - delegate</span><br><span class="line">#pragma mark - getter / setter</span><br></pre></td></tr></table></figure></p>
+<p>那么，在查找的时候,你就会发现会多么的爽 <br><br>那么，以后看同事的代码的时候，再也不用偷偷跟小伙伴吐槽又接了一个烂尾楼了<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671b8d8a8417490?w=972&amp;h=939&amp;f=jpeg&amp;s=188407" alt=""><br>看起来是不是很清晰明了？<br>那么下面的常用类模版制作就是解决这些问题的; <br><br>另外,在阅读别人代码的时候，你是不是也常常找不到某个类在那个文件夹里面？<br> 别方，下面的工程模版和子工程模版就是为了解决这个问题的。</p>
+<h1 id="三-Xcode工程模版和子工程模版"><a href="#三-Xcode工程模版和子工程模版" class="headerlink" title="三 Xcode工程模版和子工程模版"></a>三 Xcode工程模版和子工程模版</h1><p>Xcode自带的工程创建和子工程创建：<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671b9684edb2d7f?w=929&amp;h=588&amp;f=jpeg&amp;s=57718" alt=""><br>自定义模版之后的创建和子工程创建：<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671b95c8297b8da?w=927&amp;h=597&amp;f=jpeg&amp;s=54494" alt=""></p>
+<p>看到下面这两个“皮卡丘”了没，没错，这就是自定义模版之后的App工程创建和ChildProject子工程创建，以后创建的时候就可以直接选择这两个，不用在选择系统Xcode自带的了，那么怎么创建呢？<br> 下面我们要先来看一下几张图，然后再去制作模版。<br><br>这里是我创建的两个模版，这个文件在你安装的Xcode里面，路径是：</p>
+<blockquote>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/Project Templates/iOS/Application </p>
+</blockquote>
+<p> 注：这里有两种方式去制作模版：1、可以直接修改系统的相应模版；2、复制系统的模版，然后修改模版名和绑定的ID，制作属于自己的模版。  <br><br>建议：复制模版出来，然后自己修改，另外直接在xcode里面修改文件是不方便的，有些可能是只读权限，所以吧模版复制出来修改完后替换Xcode自带的就行。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671b9ebf0a633a0?w=1366&amp;h=444&amp;f=jpeg&amp;s=74942" alt=""></p>
+<p>图中除了SMT-Application之外，其他的都是Xcode自带的模版，里面能对应上创建工程时操作面板上的所有图标。这里我们只以Single View APP为例说明。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bae1dae42865?w=1127&amp;h=726&amp;f=jpeg&amp;s=162071" alt=""></p>
+<ul>
+<li><p>首先要修改下“Identifier”字段，以防冲突。</p>
+<blockquote>
+<p>Xcode模板是支持继承的，或者叫做Import，这里Ancestors字段以数组的方式列出了要继承的对象，上面只继承com.apple.dt.unit.cocoaTouchApplicationBase，这个是和Xcode6一起的Empty工程类似的。<br>而Signal View工程则继承了com.apple.dt.unit.storyboardApplication”和com.apple.dt.unit.coreDataCocoaTouchApplication.而com.apple.dt.unit.storyboardApplication又是继承了上面的com.apple.dt.unit.cocoaTouchApplicationBase。 具体其定义了什么，可以对比着看下，在系统的工程模板位置，比如“Main.storyboard”是如何别加入工程的。</p>
+</blockquote>
+</li>
+<li><p>OC的用Objective-C字段:每个Node是一个新工程中的具体物理文件位置，目录自动创建，如果没有在后面的Definitions中指定，则吧路径中的最后的的文件加入到工程的代码跟目录下。</p>
+</li>
+<li>Definitions.Xxx :这里Xxx就是上面的Node的值，其实一个字典类型，主要有两个键：<br>Path: 模板文件（也就是要被拷贝的文件）所在工程模板中的位置<br>Group: 新工程中，这个文件所在的Group</li>
+</ul>
+<p>Xcode模版的继承结构：<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bb0cb4554e52?w=1527&amp;h=922&amp;f=jpeg&amp;s=92718" alt=""></p>
+<p>文件夹配置模版结构：<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bc1e0b2b7bfb?w=740&amp;h=456&amp;f=jpeg&amp;s=65976" alt=""></p>
+<p>占位符含义：</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>FILENAME</em></strong></td>
+<td>当前的文件名</td>
+</tr>
+<tr>
+<td><strong><em>PROJECTNAME</em></strong></td>
+<td>当前工程名，在创建工程时设置的</td>
+</tr>
+<tr>
+<td><strong><em>FULLUSERNAME</em></strong></td>
+<td>当前登录用户</td>
+</tr>
+<tr>
+<td><strong><em>DATE</em></strong></td>
+<td>当前日期 ，格式为MM/DD/YY</td>
+</tr>
+<tr>
+<td><strong><em>FILEBASENAMEASIDENTIFIER</em></strong></td>
+<td>不带后缀的文件名</td>
+</tr>
+</tbody>
+</table>
+<p>当然这里的工程目录文件结构如何配置，看个人喜好来决定，你可以配置.gitignore、info.plist、子工程的Resource放资源文件 等等， 看你的需求。这样创建出来的工程就是你配置后期望的工程目录以及一些你希望做的初始化配置。</p>
+<p>简单配置模版之后创建的子工程：<br><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bd30b7fa0dbf?w=447&amp;h=446&amp;f=jpeg&amp;s=29339" alt=""></p>
+<p>其实如果能有更多的时间，做一份通用模版出来，对项目开发尤其是多人的组件化开发，创建子工程和文件，统一文件夹和代码格式，将变得非常便利。</p>
+<h1 id="四、Xcode的类文件模版"><a href="#四、Xcode的类文件模版" class="headerlink" title="四、Xcode的类文件模版"></a>四、Xcode的类文件模版</h1><p>可能我们平常用得最多的就是创建文件了， 那么如何去制作文件模版呢？ 其实制作文件模版的过程和子工程的基本一样，下面只说一下不同的部分；<br>子工程模版位置：</p>
+<blockquote>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates/Source</p>
+</blockquote>
+<p>模版目录：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bd83fa19afb1?w=1121&amp;h=682&amp;f=jpeg&amp;s=107283" alt=""></p>
+<p>模版文件：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671bda6fe368f73?w=1015&amp;h=914&amp;f=jpeg&amp;s=86135" alt=""></p>
+<p>这里的模版是只写了几个#pragma mark，你可以随意定制一些代码规范以及想调用的方法都可以，看个人定制，只要你愿意，你甚至可以在每个文件里面写“我最帅”…haha</p>
+<p>文件模版可以不做太多的新增文件，Xcode默认提供的类型我们修改下就基本足够了，当然如果你想有更多的姿势，可以新增然后修改下TemplateInfo.plist文件</p>
+<p>然后在工程里面，当我们要创建文件的时候，选择自己的Cocoa Touch Class， 创建出来的就是你期待的文件模版：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/16/1671be15d5859c67?w=746&amp;h=542&amp;f=jpeg&amp;s=45222" alt=""></p>
+<p><br><br><br><br><br></p>
+<h3 id="好了，到这里基本操作就说完了，还是需要自己去操作一边，或者团队有大佬创建一份作为规范模版，分发给我们，然后直接拖入Xcode，那就真的是爽歪歪了～"><a href="#好了，到这里基本操作就说完了，还是需要自己去操作一边，或者团队有大佬创建一份作为规范模版，分发给我们，然后直接拖入Xcode，那就真的是爽歪歪了～" class="headerlink" title="好了，到这里基本操作就说完了，还是需要自己去操作一边，或者团队有大佬创建一份作为规范模版，分发给我们，然后直接拖入Xcode，那就真的是爽歪歪了～"></a>好了，到这里基本操作就说完了，还是需要自己去操作一边，或者团队有大佬创建一份作为规范模版，分发给我们，然后直接拖入Xcode，那就真的是爽歪歪了～</h3>
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/09/28/2018/09/LLVM编译器之Clang前端/" title="LLVM编译器之Clang前端">LLVM编译器之Clang前端</a></h2>
+                <p class="excerpt">
+                
+                前沿
+瞻仰大佬
+Chris Lattner
+三大杰作：
+
+Clang
+LLVM
+Swift
+
+
+2010年开始编写 Swift语言,而且一个人实现了Swift的大部分基础架构；他也是 LVVM 以及 Clang的主要开发者。
+什么是LLVMLLVM官网
+
+The LLVM Project is a 
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-09-28T08:24:17.000Z" class="post-list__meta--date date">2018-09-28</time> &#8226; <span class="post-list__meta--tags tags"> </span><a class="btn-border-small" href="/2018/09/28/2018/09/LLVM编译器之Clang前端/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

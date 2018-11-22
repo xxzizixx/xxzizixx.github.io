@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Bryan Yang | 其修远兮，上下求索</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Bryan Yang | 其修远兮，上下求索">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Bryan Yang | 其修远兮，上下求索">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="gg" title="我的微博" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <div class="main-post-list">
+    
+  <ol class="post-list">
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/04/17/2016/04/Weak的实现原理/" title="link to post.title">Weak的实现原理</a></h2>
+      <p class="excerpt">
+    
+      很少有人知道weak表其实是一个hash（哈希）表，Key是所指对象的地址，Value是weak指针的地址数组。更多人的人只是知道weak是弱引用，所引用对象的计数器不会加一，并在引用对象被释放的时候自动被设置为nil。通常用于解决循环引用问题。但现在单知道这些已经不足以应对面试了，好多公司会问weak的原理。weak的原理是什么呢？下面就分析一下weak的工作原理（只是自己对这个问题好奇，学习过
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-04-17T10:44:04.000Z" class="post-list__meta--date date">2016-04-17</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2016/04/17/2016/04/Weak的实现原理/">继续阅读</a></div>
+      <hr class="post-list__divider">
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/" title="link to post.title">Copy修饰和深浅复制以及NSMutableObject的修饰词</a></h2>
+      <p class="excerpt">
+    
+      先说结论1：对于不可变对象，copy都是浅复制，即指针复制。mutableCopy 都是alloc一个新对象返回。2：对于可变对象，copy和mutableCopy都是alloc新对象返回。3：不论是可变还是不可变对象，copy返回的对象都是不可变的，mutableCopy返回的对象都是可变的。4：容器类对象，不论是可变的还是不可变的，copy，mutableCopy返回的对象里所包含的对象的地址
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2015-07-07T09:44:04.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/">继续阅读</a></div>
+      <hr class="post-list__divider">
+    </li>
+  
+    
+  </ol>
+
+
+ <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+    
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</div>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

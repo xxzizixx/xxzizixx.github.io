@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>浅谈MVVM框架，以及如何去写MVVM | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="浅谈MVVM框架，以及如何去写MVVM | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="浅谈MVVM框架，以及如何去写MVVM | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2016/03/11/2016/03/浅谈MVVM框架，以及如何去写MVVM/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="gg" title="我的微博" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-03-11T03:24:17.000Z" class="post-list__meta--date date">2016-03-11</time> &#8226; <span class="post-meta__tags tags">  </span>
+    </div>
+    <h1 class="post-title">浅谈MVVM框架，以及如何去写MVVM</h1>
+  </header>
+
+  <section class="post">
+    <p>对于MVVM框架，大家应该并不陌生，如果对这方面还不清楚的，可以去看一下一下三篇文章，应该会有一个比较清楚的认识。</p>
+<p><a href="http://www.cocoachina.com/ios/20160520/16004.html" target="_blank" rel="noopener">MVVM奇葩说</a><br><a href="http://blog.devtang.com/2015/11/02/mvc-and-mvvm/" target="_blank" rel="noopener">被误解的 MVC 和被神化的 MVVM</a><br><a href="https://www.cnblogs.com/oc-bowen/p/6255475.html" target="_blank" rel="noopener">iOS 架构模式–解密 MVC，MVP，MVVM以及VIPER架构</a></p>
+<p>读了这三篇文章，你应该就不会对MVVM陌生了， 我这里算是对以上几篇文章以及个人的理解，上代码展示一下自己认为的MVVM写法，当然：我这里的写法是从唐巧的猿题库里面借鉴过来的，算是对MVVM的一个变种吧。</p>
+<h2 id="Talk-is-cheap-show-you-the-code"><a href="#Talk-is-cheap-show-you-the-code" class="headerlink" title="Talk is cheap, show you the code."></a>Talk is cheap, show you the code.</h2><h3 id="1、M层"><a href="#1、M层" class="headerlink" title="1、M层"></a>1、M层</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">@interface JBSystemMessageModel : NSObject</span><br><span class="line">/** 消息ID */</span><br><span class="line">@property (nonatomic, assign) int messageID;</span><br><span class="line">/** 作者 */</span><br><span class="line">@property (nonatomic, copy) NSString *author;</span><br><span class="line">/** 标题 */</span><br><span class="line">@property (nonatomic, copy) NSString *title;</span><br><span class="line">/** 内容 */</span><br><span class="line">@property (nonatomic, copy) NSString *content;</span><br><span class="line">/** 时间 */</span><br><span class="line">@property (nonatomic, copy) NSString *publishedTime;</span><br><span class="line">/** 是否阅读 */</span><br><span class="line">@property (nonatomic, assign, readonly) BOOL isRead;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h3 id="2、V层"><a href="#2、V层" class="headerlink" title="2、V层"></a>2、V层</h3><p>当然，严格上说Controller也是V层，但我比较喜欢把Controller看成是“胶水”，也就是把M、V、VM链接在一起然后展示到界面的强力胶，所以这里的V层主要展示SystemMessageCell。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line">#import &quot;JBSystemMessageModel.h&quot;</span><br><span class="line"></span><br><span class="line">@protocol JBSystemMessageDelegate &lt;NSObject&gt;</span><br><span class="line"></span><br><span class="line">@optional</span><br><span class="line">- (void)moreInformation:(JBSystemMessageFrameModel *)frameModel;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface JBSystemMessageCell : UITableViewCell</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) JBSystemMessageFrameModel *frameModel;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, weak) id&lt;JBSystemMessageDelegate&gt; delegate;    </span><br><span class="line"></span><br><span class="line">+ (instancetype)cellWithTableView:(UITableView *)tableView;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>SystemMessageCell.m文件，其实也就是大家常写的控件的创建(单纯的创建，不写任何业务逻辑，最后赋值还是用setFrameModel进行赋值)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@implementation JBSystemMessageCell   </span><br><span class="line">+ (instancetype)cellWithTableView:(UITableView *)tableView &#123;</span><br><span class="line">staticNSString *reuseID = @&quot;JBSystemMessageCell&quot;;</span><br><span class="line">JBSystemMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];      </span><br><span class="line">if (!cell) &#123;</span><br><span class="line">cell = [[JBSystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefaultreuseIdentifier:reuseID];</span><br><span class="line">&#125;</span><br><span class="line">return cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier &#123;</span><br><span class="line">if (self = [superinitWithStyle:style reuseIdentifier:reuseIdentifier]) &#123;    </span><br><span class="line">self.backgroundColor = BackgroundColor;</span><br><span class="line">// 点击cell的时候不要变色</span><br><span class="line">self.selectionStyle = UITableViewCellSelectionStyleNone;    </span><br><span class="line">// 设置标题cell</span><br><span class="line">[self setUpCell];</span><br><span class="line">&#125;</span><br><span class="line">return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>赋值：setFramModel，当然你也可以像猿题库里面那样自己写一个方法进行赋值都是可以的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (void)setFrameModel:(JBSystemMessageFrameModel *)frameModel &#123;  </span><br><span class="line">_frameModel = frameModel; </span><br><span class="line">self.container.frame = frameModel.containerFrame;</span><br><span class="line">// 标题</span><br><span class="line">self.titleLabel.text = frameModel.messageModel.title;</span><br><span class="line">self.titleLabel.frame = frameModel.titleLabelFrame;</span><br><span class="line">// 时间-作者</span><br><span class="line">self.timeLabel.frame = frameModel.timeLabelFrame;</span><br><span class="line">// 内容</span><br><span class="line">self.contentLabel.text = frameModel.messageModel.content;</span><br><span class="line">self.contentLabel.frame = frameModel.contentLabelFrame;</span><br><span class="line">// 查看详情</span><br><span class="line">self.moreView.frame = frameModel.moreViewFrame;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)moreInformation &#123;   </span><br><span class="line">if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(moreInformation:)]) &#123;</span><br><span class="line">[self.delegate moreInformation:self.frameModel];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-VM层"><a href="#3-VM层" class="headerlink" title="3.VM层"></a>3.VM层</h3><p>VM层即ViewModel，就是处理API获取的数据转化成界面展示的模型数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// 控件与cell之前的顶部间距</span><br><span class="line">#define kJBMessageCellTopMargin           20</span><br><span class="line">// 控件之间的顶部间距；</span><br><span class="line">#define kJBMessageTopMargin               10</span><br><span class="line">// 控件与cell之间的左右间距；</span><br><span class="line">#define kJBMessageCellLeftMargin          15</span><br><span class="line">// 标题高度</span><br><span class="line">#define kJBMessageTitleHeight             14</span><br><span class="line">// 时间和作者高度</span><br><span class="line">#define kJBMessageTimeHeight              10</span><br><span class="line">// 查看详情高度</span><br><span class="line">#define kJBMessageInfoHeight              35</span><br><span class="line">// 标题字体</span><br><span class="line">#define kJBMessageCellTitleFont     [UIFont systemFontOfSize:15]</span><br><span class="line">// 时间和作者字体</span><br><span class="line">#define kJBMessageCellTimeFont      [UIFont systemFontOfSize:10]</span><br><span class="line">// 内容字体</span><br><span class="line">#define kJBMessageCellSourceFont    [UIFont systemFontOfSize:12]</span><br><span class="line"></span><br><span class="line">@interface JBSystemMessageFrameModel : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) JBSystemMessageModel *messageModel;</span><br><span class="line"></span><br><span class="line">/** cell展示容器的Frame */</span><br><span class="line">@property (nonatomic, assign) CGRect containerFrame;</span><br><span class="line"></span><br><span class="line">/** 标题的Frame */</span><br><span class="line">@property (nonatomic, assign) CGRect titleLabelFrame;</span><br><span class="line"></span><br><span class="line">/** 时间／作者的Frame */</span><br><span class="line">@property (nonatomic, assign) CGRect timeLabelFrame;</span><br><span class="line"></span><br><span class="line">/** 内容的Frame */</span><br><span class="line">@property (nonatomic, assign) CGRect contentLabelFrame;</span><br><span class="line"></span><br><span class="line">/** 查看详情的Frame */</span><br><span class="line">@property (nonatomic, assign) CGRect moreViewFrame;</span><br><span class="line"></span><br><span class="line">/** cell的高度 */</span><br><span class="line">@property (nonatomic, assign) CGFloat cellHeight;</span><br><span class="line"></span><br><span class="line">/** cell是否展开 */</span><br><span class="line">@property (nonatomic, assign) BOOL isShowMore;</span><br></pre></td></tr></table></figure>
+<p>在ViewModel的.m文件中，依然是利用重写setMessageModel进行控件的尺寸以及展示数据逻辑等计算和转换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">@implementation JBSystemMessageFrameModel</span><br><span class="line"></span><br><span class="line">- (void)setMessageModel:(JBSystemMessageModel *)messageModel &#123;    </span><br><span class="line">_messageModel = messageModel;</span><br><span class="line">CGFloat cellWidth = ScreenWidth;</span><br><span class="line">/** 标题 */</span><br><span class="line">CGFloat titleX = kJBMessageCellLeftMargin;</span><br><span class="line">CGFloat titleY = kJBMessageCellLeftMargin;</span><br><span class="line">CGFloat titleH = kJBMessageTitleHeight;</span><br><span class="line">CGSize titleSize = [messageModel.titlesizeWithfont:kJBMessageCellTitleFontmaxSize:CGSizeMake(MAXFLOAT, titleH)];</span><br><span class="line">self.titleLabelFrame = (CGRect)&#123;&#123;titleX, titleY&#125;, titleSize&#125;;</span><br><span class="line"></span><br><span class="line">/** 时间／作者 */</span><br><span class="line">CGFloat timeX = kJBMessageCellLeftMargin;</span><br><span class="line">CGFloat timeY = CGRectGetMaxY(self.titleLabelFrame) +kJBMessageTopMargin;</span><br><span class="line">CGFloat timeH = kJBMessageTimeHeight;</span><br><span class="line">CGSize timeSize = [messageModel.publishedTimesizeWithfont:kJBMessageCellTimeFontmaxSize:CGSizeMake(MAXFLOAT, timeH)];</span><br><span class="line">CGSize authorSize = [messageModel.authorsizeWithfont:kJBMessageCellTimeFontmaxSize:CGSizeMake(MAXFLOAT, timeH)];</span><br><span class="line">CGFloat timeLabelWidth = timeSize.width + kJBMessageTopMargin + authorSize.width;</span><br><span class="line">self.timeLabelFrame = CGRectMake(timeX, timeY, timeLabelWidth, timeH);</span><br><span class="line"></span><br><span class="line">/** 内容 */</span><br><span class="line">CGFloat contentX = kJBMessageCellLeftMargin;</span><br><span class="line">CGFloat contentY = CGRectGetMaxY(self.timeLabelFrame) + kJBMessageTopMargin;</span><br><span class="line">CGSize contentSize = [messageModel.contentsizeWithfont:kJBMessageCellSourceFontmaxSize:CGSizeMake(cellWidth -kJBMessageCellLeftMargin * 4, MAXFLOAT)];</span><br><span class="line">CGSize contentOneLineSize = [@&quot;聚保&quot;sizeWithfont:kJBMessageCellSourceFontmaxSize:CGSizeMake(cellWidth -kJBMessageCellLeftMargin * 4,MAXFLOAT)];</span><br><span class="line">CGFloat contentHeight = self.isShowMore ? contentSize.height : contentOneLineSize.height;</span><br><span class="line">self.contentLabelFrame = CGRectMake(contentX, contentY, contentSize.width, contentHeight);</span><br><span class="line"></span><br><span class="line">/** 查看详情 */</span><br><span class="line">CGFloat moreViewX = 0;</span><br><span class="line">CGFloat moreViewY = CGRectGetMaxY(self.contentLabelFrame) + kJBMessageTopMargin;</span><br><span class="line">CGFloat moreViewH = kJBMessageInfoHeight;</span><br><span class="line">CGFloat moreViewW = cellWidth - kJBMessageCellLeftMargin * 2;</span><br><span class="line">self.moreViewFrame = CGRectMake(moreViewX, moreViewY, moreViewW, moreViewH);</span><br><span class="line"></span><br><span class="line">/** 容器 */</span><br><span class="line">CGFloat contrainerX = kJBMessageCellLeftMargin;</span><br><span class="line">CGFloat contrainerY = kJBMessageCellTopMargin;</span><br><span class="line">CGFloat contrainerW = moreViewW;</span><br><span class="line">CGFloat contrainerH = CGRectGetMaxY(self.moreViewFrame);</span><br><span class="line">self.containerFrame = CGRectMake(contrainerX, contrainerY, contrainerW, contrainerH);</span><br><span class="line"></span><br><span class="line">/** cell高度 */</span><br><span class="line">self.cellHeight = contrainerY + contrainerH;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在View部分的cell视图有了，Model模型和ViewModel展示数据模型都有了，Controller该怎么写呢？毕竟前面我说过，我认为Controller只是一个胶水而已，怎么才能不导致回到MVC（Massive Controller）呢？在这里我借鉴<a href="http://mp.weixin.qq.com/s?__biz=MjM5NTIyNTUyMQ==&amp;mid=444322139&amp;idx=1&amp;sn=c7bef4d439f46ee539aa76d612023d43&amp;scene=0#wechat_redirect" target="_blank" rel="noopener">猿题库 iOS 客户端架构设计</a>在中间引入一个DataSerVice来对Controller进行瘦身，并达到对每个模块解耦并可单独测试。</p>
+<h5 id="DataService部分的代码"><a href="#DataService部分的代码" class="headerlink" title="DataService部分的代码"></a>DataService部分的代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;JBSystemMessageModel.h&quot;</span><br><span class="line"></span><br><span class="line">typedef void(^JBCompletionCallback) (id_Nonnull callback);</span><br><span class="line"></span><br><span class="line">@interface JBSystemMessageDataService : NSObject</span><br><span class="line">@property (nonatomic, strong, nonnull, readonly) NSMutableArray&lt;JBSystemMessageFrameModel *&gt; *systemMessageArray;</span><br><span class="line"></span><br><span class="line">// 获取系统消息</span><br><span class="line">- (void)requestSystemMessageDataWithCallback:(nonnull JBCompletionCallback)callback;</span><br><span class="line"></span><br><span class="line">// 更新数据模型</span><br><span class="line">- (void)updateModel:(JBSystemMessageFrameModel *_Nonnull)frameModel callback:(nonnull JBCompletionCallback)callback;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这里要注意一下，对于给外部暴露的systemMessageArray这个数组最好在生命属性的时候加上readonly，因为dataService是专门处理数据的，数据不应该在其他任何外部地方被修改，做到各司其职。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@interface JBSystemMessageDataService ()</span><br><span class="line">@property (nonatomic, strong, nonnull) NSMutableArray&lt;JBSystemMessageFrameModel *&gt; *systemMessageArray;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation JBSystemMessageDataService</span><br><span class="line"></span><br><span class="line">- (NSMutableArray&lt;JBSystemMessageFrameModel *&gt; *)systemMessageArray &#123;</span><br><span class="line">if (!_systemMessageArray) &#123;</span><br><span class="line">_systemMessageArray = [NSMutableArrayarray];</span><br><span class="line">&#125;</span><br><span class="line">return_systemMessageArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)requestSystemMessageDataWithCallback:(JBCompletionCallback)callback &#123;</span><br><span class="line"></span><br><span class="line">JBWeakSelf;</span><br><span class="line">[JBHttpTool get:JBSystemMessageInfoparameters:nilsuccess:^(id json) &#123;</span><br><span class="line"></span><br><span class="line">callback(...);</span><br><span class="line"></span><br><span class="line">&#125; failure:^(NSError *error) &#123;</span><br><span class="line">callback(...);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)updateModel:(JBSystemMessageFrameModel *_Nonnull)frameModel callback:(nonnullJBCompletionCallback)callback &#123;</span><br><span class="line"></span><br><span class="line">JBSystemMessageFrameModel *newFrameModel = [JBSystemMessageFrameModel new];</span><br><span class="line">newFrameModel.isShowMore = frameModel.isShowMore;</span><br><span class="line">newFrameModel.messageModel = frameModel.messageModel;</span><br><span class="line"></span><br><span class="line">NSInteger index = [self.systemMessageArrayindexOfObject:frameModel];</span><br><span class="line">[self.systemMessageArrayreplaceObjectAtIndex:index withObject:newFrameModel];</span><br><span class="line"></span><br><span class="line">callback(@(index));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requestSystemMessageDataWithCallback是请求API并对请求的结果进行回调。当然这里只是进行简单展示一下，你也可以进行自己的理解和设计把数据请求这一块单独做一个处理并供整个项目使用，这里就不再累述。    </span><br><span class="line">- (void)updateModel:(JBSystemMessageFrameModel *_Nonnull)frameModel callback这个方法就是对数据进行更新处理，这里的场景是点击某一个cell的时候cell内部会展开，并对当前cell的数据模型进行更新处理。</span><br></pre></td></tr></table></figure>
+<p>现在DataService部分已经进行简单展示了，Controller就很好处理：进行简单的胶水黏合作用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;JBSystemMessageController.h&quot;</span><br><span class="line">#import &quot;JBSystemMessageCell.h&quot;</span><br><span class="line">#import &quot;JBSystemMessageDataService.h&quot;</span><br><span class="line"></span><br><span class="line">@interface JBSystemMessageController () &lt;JBSystemMessageDelegate&gt;</span><br><span class="line">@property (nonatomic,strong, nullable) JBSystemMessageDataService *dataService;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation JBSystemMessageController</span><br><span class="line"></span><br><span class="line">- (JBSystemMessageDataService *)dataService &#123;</span><br><span class="line">if (!_dataService) &#123;</span><br><span class="line">_dataService = [[JBSystemMessageDataServicealloc] init];</span><br><span class="line">&#125;</span><br><span class="line">return_dataService;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[superviewDidLoad];</span><br><span class="line"></span><br><span class="line">[selfsetUpData];</span><br><span class="line"></span><br><span class="line">[selfsetUpTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setUpTableView &#123;</span><br><span class="line">self.tableView.backgroundColor =BackgroundColor;</span><br><span class="line">self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;</span><br><span class="line">self.tableView.estimatedRowHeight = 0;</span><br><span class="line">self.tableView.estimatedSectionHeaderHeight = 0;</span><br><span class="line">self.tableView.estimatedSectionFooterHeight = 0;</span><br><span class="line">self.tableView.showsVerticalScrollIndicator = NO;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setUpData &#123;</span><br><span class="line"></span><br><span class="line">JBWeakSelf;</span><br><span class="line">[self.dataServicerequestSystemMessageDataWithCallback:^(id _Nonnull callback) &#123;</span><br><span class="line">JBIsSuccess(callback) ? [weakSelf.tableViewreloadData] : [MBProgressHUDshowError:callback];</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView &#123;</span><br><span class="line"></span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section &#123;</span><br><span class="line"></span><br><span class="line">return self.dataService.systemMessageArray.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line"></span><br><span class="line">return self.dataService.systemMessageArray[indexPath.row].cellHeight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line"></span><br><span class="line">JBSystemMessageCell *systemMessageCell = [JBSystemMessageCellcellWithTableView:tableView];</span><br><span class="line"></span><br><span class="line">systemMessageCell.frameModel = self.dataService.systemMessageArray[indexPath.row];</span><br><span class="line">systemMessageCell.delegate = self;</span><br><span class="line"></span><br><span class="line">return systemMessageCell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark- cell点击代理</span><br><span class="line">- (void)moreInformation:(JBSystemMessageFrameModel *)frameModel &#123;</span><br><span class="line"></span><br><span class="line">JBWeakSelf;</span><br><span class="line">[self.dataServiceupdateModel:frameModel callback:^(id  _Nonnull callback) &#123;</span><br><span class="line">// 模型在数组中的索引</span><br><span class="line">NSInteger index = [callback integerValue];   </span><br><span class="line">[weakSelf.tableView beginUpdates];</span><br><span class="line">[weakSelf.tableViewreloadRow:index inSection:0withRowAnimation:UITableViewRowAnimationAutomatic];</span><br><span class="line">[weakSelf.tableView endUpdates];</span><br><span class="line">[weakSelf.tableViewscrollToRow:index inSection:0atScrollPosition:UITableViewScrollPositionBottomanimated:YES];</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>初始化数据，初始化tableView， 然后复制tableView数据源 并 走一下cell的代理方法就OK了～ 其他的controller根本不需要管，Model和ViewModel压根就跟Controller没有半毛钱的关系，头文件都不需要倒入，controller真正关心的只是View和DataService两个；dataService关心的只是ViewModel界面展示数据的处理。而ViewModel关心的只是Model层数据结构。这样进行设计架构，不仅仅对controller进行了瘦身，各个部分也进行了解耦，另外这么设计也有一个好处就是各个部分可以进行相应的复用，而且项目的维护（特别是新来的接手别人的“杰作”的时候，应该还算比较酸爽的，不至于像以前那样抱怨：这谁写的啊，看他代码我还不如删了自己重新写）起来也是比较方便的。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>以上所展示的算是MVVM的一种改良吧，借鉴猿题库的架构思想。当然，每个人可能对MVVM都有自己的理解，可以根据自己的理解进行设计出合理的框架，我在这里只是做一个抛砖引玉，简单的展示下。大家可以自己发挥，如果有好的建议，可以留言进行探讨，另外理解错误的地方希望大家斧正～</p>
+<p>这里稍微有点懒了，开年工作忙，所以贴了很多代码， 希望大家谅解。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/04/17/2016/04/Weak的实现原理/" title="Weak的实现原理">Weak的实现原理</a></h2>
+                <p class="excerpt">
+                
+                很少有人知道weak表其实是一个hash（哈希）表，Key是所指对象的地址，Value是weak指针的地址数组。更多人的人只是知道weak是弱引用，所引用对象的计数器不会加一，并在引用对象被释放的时候自动被设置为nil。通常用于解决循环引用问题。但现在单知道这些已经不足以应对面试了，好多公司会问we
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-04-17T10:44:04.000Z" class="post-list__meta--date date">2016-04-17</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2016/04/17/2016/04/Weak的实现原理/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2015/08/13/2015/08/nil、Nil、NULL、NSNull区别以及给空对象发送消息/" title="nil、Nil、NULL、NSNull区别以及给空对象发送消息">nil、Nil、NULL、NSNull区别以及给空对象发送消息</a></h2>
+                <p class="excerpt">
+                
+                首先，OC中向nil发消息，程序是不会崩溃的。因为OC的函数调用都是通过objc_msgSend进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2015-08-13T06:37:03.000Z" class="post-list__meta--date date">2015-08-13</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2015/08/13/2015/08/nil、Nil、NULL、NSNull区别以及给空对象发送消息/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>
