@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>CocoaPods建立自己的仓库 | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CocoaPods建立自己的仓库 | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CocoaPods建立自己的仓库 | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://xxzizixx.github.io/2018/10/14/2018/10/Cocoapod建立自己的仓库/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-10-14T11:11:15.000Z" class="post-list__meta--date date">2018-10-14</time> &#8226; <span class="post-meta__tags tags"> 
+  
+ </span>
+    </div>
+    <h1 class="post-title">CocoaPods建立自己的仓库</h1>
+  </header>
+
+  <section class="post">
+    <p><br></p>
+<h1 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h1><p>作为iOS开发，无论你是小白还是远古时代MRC的大神，相信没有人不知道CocoaPods，如果不知道的话，那么你应该去面壁十分钟怀疑自己了～<br>github几乎所有（或者说全部）优秀的iOS开源框架都提供了Cocoapods Installation方式，由此可见，CocoaPods的使用为我们开发带来了极大的便利。<br>那么问题来了：<strong>我们改如何去构建自己的Cocoapods仓库呢？</strong></p>
+<h1 id="CocoaPods的本地目录"><a href="#CocoaPods的本地目录" class="headerlink" title="CocoaPods的本地目录"></a>CocoaPods的本地目录</h1><p>先在终端运行下面命令显示隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder</span><br></pre></td></tr></table></figure></p>
+<p>然后输入命令查看CocoaPods本地目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/.cocoapods/repos/master</span><br><span class="line">// 打开~/.cocoapods/repos/master文件夹</span><br><span class="line">$ open ../</span><br></pre></td></tr></table></figure></p>
+<p>然后你就会看到如下面的图：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxhs4t2hs0j31gg0k1q9v.jpg" alt=""><br>图中的master文件夹是github上面的仓库的库的检索文件；另外领个是公司内部gitLab上面自建的库文件：</p>
+<ul>
+<li>一个是gitmirror，他是项目中使用到github上面的库文件的镜像podspec检索文件，关于git mirror的相关知识可以自行google。</li>
+<li>另一个是为组件化开发自建的Cocoapods库，目的是封装相关功能模块方便其他人pod开发。可见在组件化开发中Cocoapods自建仓库已经是基本操作了。    </li>
+</ul>
+<p><strong>Specs目录</strong>：Specs目下并不是直接是以库的名称命名的文件夹，而是分了3层目录，分别以0-f来命名。比如AFNetworking的位置是: a/7/5/AFNetworking/xx/AFNetworking.podspec。<br>后面的xx就是版本号了，也就是我们打的tags。</p>
+<p>三层文件夹的排列方式就是使用MD5库名，然后取MD5后的前三位分别做为三层目录；这样做的目的是提高库的检索速度来提高Cocoapods的效率。<br>如下命令可以输出MD5根据规则在相对应文件夹下查找对应的库podspec文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ md5 -s &quot;AFNetworking&quot;</span><br><span class="line">// 输出</span><br><span class="line">MD5 (&quot;AFNetworking&quot;) = a75d452377f3996bdc4b623a5df25820</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">md5 -s &quot;SDWebImage&quot;</span><br><span class="line">// 输出</span><br><span class="line">MD5 (&quot;SDWebImage&quot;) = 1173b6117a2cf4a6756f761aedae9d2c</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">md5 -s &quot;YYKit&quot;</span><br><span class="line">// 输出</span><br><span class="line">MD5 (&quot;YYKit&quot;) = a408542eb2fcd3c332bf83b515cdcf03</span><br></pre></td></tr></table></figure>
+<h4 id="pod搜索Specs文件夹中的框架输出框架信息"><a href="#pod搜索Specs文件夹中的框架输出框架信息" class="headerlink" title="pod搜索Specs文件夹中的框架输出框架信息"></a>pod搜索Specs文件夹中的框架输出框架信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod search AFNetworking</span><br></pre></td></tr></table></figure>
+<p>会看到iTerm输出以下信息：</p>
+<p>可以点击查看<a href="https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking.podspec" target="_blank" rel="noopener">AFNetworking/AFNetworking.podspec</a>进行对比：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxht2cy2d8j30sl0rwafi.jpg" alt=""></p>
+<p><br><br>我们在 CocoaPods 发布我们的框架时，就是要在 master 仓库中添加我们的仓库描述信息，然后push到远程仓库中。不过这个过程不用我们手动去操作，只需要通过pod命令进行操作即可。</p>
+<p><br><br><br></p>
+<h1 id="构建github上的Cocoapods公有仓库"><a href="#构建github上的Cocoapods公有仓库" class="headerlink" title="构建github上的Cocoapods公有仓库"></a>构建github上的Cocoapods公有仓库</h1><h3 id="注册-CocoaPods-账号"><a href="#注册-CocoaPods-账号" class="headerlink" title="注册 CocoaPods 账号"></a>注册 CocoaPods 账号</h3><p>想创建开源的Pod库，就要注册一个CocoaPods账号，我们使用终端注册, email 用你的 GitHub 邮箱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod trunk register GitHub_email &apos;user_name&apos; --verbose</span><br></pre></td></tr></table></figure></p>
+<p>等终端出现下面文字，CocoaPods 会发一个确认邮件到你的邮箱上，登录你的邮箱进行确认。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!] Please verify the session by clicking the link in the verification email that has been sent to you_email@163.com</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxht8jhwbwj30r10h30ud.jpg" alt=""><br>注册成功！</p>
+<p>确认后再终端输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk me</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fxht9rw5ihj30oq0d0wge.jpg" alt=""></p>
+<p><br></p>
+<h3 id="创建Git仓库"><a href="#创建Git仓库" class="headerlink" title="创建Git仓库"></a>创建Git仓库</h3><p>在 GitHub 上创建一个公开项目，项目中必须包含这几个文件:</p>
+<ul>
+<li>LICENSE:开源许可证</li>
+<li>README.md:仓库说明</li>
+<li>你的代码</li>
+<li><strong>BYPhoneNumTF.podspec: CocoaPods 的描述文件，这个文件非常重要</strong></li>
+</ul>
+<h3 id="创建-podspec"><a href="#创建-podspec" class="headerlink" title="创建.podspec"></a>创建.podspec</h3><p>.podspec 是用 Ruby 的配置文件，描述你项目的信息。</p>
+<p>在你的仓库目录下，使用终端命令创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod spec create PAImagePickerModule</span><br></pre></td></tr></table></figure></p>
+<p>这时就会在你的仓库下生成 PAImagePickerModule.podspec 文件<br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fxhtk4u9jxj30pw0lwn0f.jpg" alt=""><br><br></p>
+<p>根据要求修改配置文件，里面都有注视，但是很多配置都不是必须的，我们只填写必要的信息就行了。<br>我这里列出了主要的配置，可以参考这个进行修改：<br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fxhtmm2c6mj30me0isgp0.jpg" alt=""></p>
+<p><br><br><strong>下面就是最关键的一步了：验证 .podspec 文件的格式是否正确</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod lib lint</span><br></pre></td></tr></table></figure>
+<p>如果验证通过会显示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; PAImagePickerModule (0.0.4)</span><br><span class="line"></span><br><span class="line">PAImagePickerModule passed validation.</span><br></pre></td></tr></table></figure></p>
+<p>但是很多情况下并没有这么顺利，比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-&gt; PAImagePickerModule (0.0.4)</span><br><span class="line">- WARN  | url: There was a problem validating the URL http://xxzizixx.github.io.</span><br><span class="line"></span><br><span class="line">[!] PAImagePickerModule did not pass validation, due to 1 warning (but you can use `--allow-warnings` to ignore it) and all results apply only to public specs, but you can use `--private` to ignore them if linting the specification for a private pod.</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">You can use the `--no-clean` option to inspect any issue.</span><br></pre></td></tr></table></figure></p>
+<p>提示我们需要加–allow-warnings这么一句话，意思就是允许警告，命令改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod lib lint --allow-warnings</span><br></pre></td></tr></table></figure></p>
+<h3 id="给仓库打标签"><a href="#给仓库打标签" class="headerlink" title="给仓库打标签"></a>给仓库打标签</h3><p>验证成功后，将仓库提交到远程，然后给仓库打上标签并将标签也推送到远程。</p>
+<p>标签相当于将你的仓库的一个压缩包，用于稳定存储当前版本。标签号与你在 s.version = “0.0.4”的版本号一致 0.0.4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看标签</span><br><span class="line">$ git tag</span><br><span class="line">创建标签</span><br><span class="line">$ git tag -a 0.0.4 -m &apos;标签说明&apos; </span><br><span class="line">删除标签</span><br><span class="line">$ git tag -d 0.0.4</span><br><span class="line">推送到远程</span><br><span class="line">$ git push origin --tags</span><br><span class="line">删除远程tag</span><br><span class="line">git push origin --delete tag 0.1.0</span><br></pre></td></tr></table></figure></p>
+<h3 id="发布-podspec"><a href="#发布-podspec" class="headerlink" title="发布.podspec"></a>发布.podspec</h3><p>到这里说明到最后一步了，就是发布项目的描述的文件PAImagePickerModule.podspec</p>
+<p>在仓库目录下执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk push PAImagePickerModule.podspec</span><br></pre></td></tr></table></figure></p>
+<p>如果像之前那样因为警告等原因报错了，那就在后面加参数重新执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk push PAImagePickerModule.podspec --allow-warnings</span><br></pre></td></tr></table></figure></p>
+<p>将你的 PAImagePickerModule.podspec 发布到公有的speecs上,这一步其实做了很多操作,包括:</p>
+<ul>
+<li>更新本地 pods 库 ~/.cocoaPods.repo/master</li>
+<li>验证.podspec格式是否正确 </li>
+<li>将 .podspec 文件转成 JSON 格式</li>
+<li>对 master 仓库 进行合并、提交.master仓库地址</li>
+</ul>
+<p>成功后将会出现下列信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Updating spec repo `master`</span><br><span class="line">Validating podspec</span><br><span class="line">-&gt; PAImagePickerModule (0.0.4)</span><br><span class="line"></span><br><span class="line">Updating spec repo `master`</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">🎉  Congrats</span><br><span class="line"></span><br><span class="line">🚀  PAImagePickerModule (0.0.4) successfully published</span><br><span class="line">📅  Oct. 14th, 01:39</span><br><span class="line">🌎  https://cocoapods.org/pods/PAImagePickerModule</span><br><span class="line">👍  Tell your friends!</span><br></pre></td></tr></table></figure></p>
+<p>说明发布成功，你就可以通过上面的URL: <a href="https://cocoapods.org/pods/PAImagePickerModule" target="_blank" rel="noopener">https://cocoapods.org/pods/PAImagePickerModule</a> 进入的Pods查看自己的仓库信息了.<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxhwmhkhfnj30no0hu0u4.jpg" alt=""></p>
+<h3 id="使用仓库"><a href="#使用仓库" class="headerlink" title="使用仓库"></a>使用仓库</h3><p>发布到Cocoapods后，在终端更新本地pods仓库信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod setup</span><br></pre></td></tr></table></figure></p>
+<p>然后搜索刚刚提交的仓库:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ pod search PAImagePickerModule ---</span><br><span class="line">-&gt; PAImagePickerModule (0.0.4)</span><br><span class="line">A delightful TextField of PhoneNumber</span><br><span class="line">pod &apos;PAImagePickerModule&apos;, &apos;~&gt; 0.0.4&apos;</span><br><span class="line">- Homepage: https://github.com/xxzizixx/PAImagePickerModule</span><br><span class="line">- Source:   https://github.com/xxzizixx/PAImagePickerModule.git</span><br><span class="line">- Versions: 0.0.4, 0.0.1 [PAImagePickerModule repo]</span><br><span class="line">(END)</span><br></pre></td></tr></table></figure></p>
+<p>若出现仓库信息说明已经成功了，这时候你就可以在 Podfile 添加:pod ‘PAImagePickerModule’, ‘~&gt; 0.0.4’,愉快的使用自己的仓库了。</p>
+<h1 id="在内网创建私有CocoaPods仓库"><a href="#在内网创建私有CocoaPods仓库" class="headerlink" title="在内网创建私有CocoaPods仓库"></a>在内网创建私有CocoaPods仓库</h1><p>前面已经说了，在多人团队开发采用组件化方案的时候，就免不了的在公司内网创建私有的CocoaPods仓库，其实在内网gitlab上创建私有的pod库和在github上面常见的步骤基本差不多，这里只说几个注意点。<br>首先在iTerm中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo</span><br></pre></td></tr></table></figure></p>
+<p>会列出当前Cocoapods关联的仓库，如下图：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxhy9ki2lmj30oq0eg76r.jpg" alt=""><br>然后我们在写<strong>内网specs文件</strong>的时候，别忘了相关地方替换下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把这里的https://github.com/xxzizixx都换成内网地址</span><br><span class="line">s.homepage     = &quot;https://github.com/xxzizixx/PAImagePickerModule&quot;</span><br><span class="line">s.source       = &#123; :git =&gt; &apos;https://github.com/xxzizixx/PAImagePickerModule.git&apos;, :tag =&gt; s.version.to_s &#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p><strong>在发布.podspec描述文件的时候，内网选择使用：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo push &quot;内网仓库名&quot; PAImagePickerModule.podspec --allow-warnings</span><br></pre></td></tr></table></figure></p>
+<p>其实这个理解可以跟git branch分支推送差不多的意思，cocoapods默认的trunk是github的master，我们在push .podspec描述文件的时候需要指定推送的仓库名。<br><br></p>
+<h1 id="Cocoapod库的更新："><a href="#Cocoapod库的更新：" class="headerlink" title="Cocoapod库的更新："></a>Cocoapod库的更新：</h1><p>关于pod库的更新，按照下面三个步骤就行：</p>
+<ul>
+<li>修改pod库完毕后（<strong>.podspec也属于pod库的一部分，.podspec的version版本号一定要记得修改，版本号要和后面的tags标签对应</strong>），push到目标仓库</li>
+<li>打标签，对push到目标仓库的版本进行tags版本标记，tags一定要和.podspec里面的version抑制，然后将打好的tags推送到目标仓库</li>
+<li>发布.podspec文件<br>注：如果对整个流程不熟悉，避免多次发布.podspec失败，导致多次新增tag版本越来越大，可以先进行.podspec描述文件的验证，通过后再push到目标仓库。</li>
+</ul>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/16/2018/11/Xcode Template：工程模版、子工程模版、类文件模版/" title="Xcode Template：工程模版、子工程模版、类文件模版">Xcode Template：工程模版、子工程模版、类文件模版</a></h2>
+                <p class="excerpt">
+                
+                一、前序一直准备写一篇关于Xcode Template模版制作的文章，昨天听同事提到Xcode Template，并决定抽时间写一篇关于Xcode Template制作的文章，文章包括三部分：
+
+为什么要定义这些模版
+Xcode工程模版和子工程模版
+Xcode的类文件模版
+
+二、为什么要定义这些模版
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-16T06:57:41.000Z" class="post-list__meta--date date">2018-11-16</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2018/11/16/2018/11/Xcode Template：工程模版、子工程模版、类文件模版/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/09/28/2018/09/LLVM编译器之Clang前端/" title="LLVM编译器之Clang前端">LLVM编译器之Clang前端</a></h2>
+                <p class="excerpt">
+                
+                前沿
+瞻仰大佬
+Chris Lattner
+三大杰作：
+
+Clang
+LLVM
+Swift
+
+
+2010年开始编写 Swift语言,而且一个人实现了Swift的大部分基础架构；他也是 LVVM 以及 Clang的主要开发者。
+什么是LLVMLLVM官网
+
+The LLVM Project is a 
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-09-28T08:24:17.000Z" class="post-list__meta--date date">2018-09-28</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2018/09/28/2018/09/LLVM编译器之Clang前端/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>
