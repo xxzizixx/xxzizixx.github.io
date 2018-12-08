@@ -33,13 +33,14 @@ tags:
 <br></br>
 
 ## Xcode版本的相对应编译器的变迁
-Xcode版本   |   编译器版本
---------    |   ---
-Xcode3之前  |   GCC
-Xcode3      |   GCC与 LLVM混合编译器
-Xcode4      |   LLVM-GCC 成为默认编译器
-Xcode4.2    |   LLVM3.0成为默认编译器
-Xcode5      |   LLVM5.0, 完成 GCC到LLVM的过渡
+
+|   Xcode版本      |    编译器版本       |
+|    :--------:         |    :--------:  |
+|   Xcode3之前    |   GCC   |
+|   Xcode3           |   GCC与 LLVM混合编译器     |
+|   Xcode4           |   LLVM-GCC 成为默认编译器    |
+|   Xcode4.2        |   LLVM3.0成为默认编译器          |
+|   Xcode5           |   LLVM5.0, 完成 GCC到LLVM的过渡      |
 
 ### GCC -> LLVM 简介 
 >GCC是 Xcode早期使用的一个强大的编译器.这个编译器被移植到各种系统中,其中就是 Mac OSX 操作系统,所以这就反映在 Xcode中,在早期的 Xcode 调试代码的一个工具就是 GDB,它是GNU调试器.  
