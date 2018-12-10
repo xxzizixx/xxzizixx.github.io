@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>MJExtesion源码解析 | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MJExtesion源码解析 | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MJExtesion源码解析 | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://xxzizixx.github.io/2016/08/15/2016/08/hello-world/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-08-15T09:55:32.000Z" class="post-list__meta--date date">2016-08-15</time> &#8226; <span class="post-meta__tags tags">  </span>
+    </div>
+    <h1 class="post-title">MJExtesion源码解析</h1>
+  </header>
+
+  <section class="post">
+    <p><br><br><br></p>
+<h1 id="前沿"><a href="#前沿" class="headerlink" title="前沿"></a>前沿</h1><blockquote>
+<p>A fast, convenient and nonintrusive conversion between JSON and model. Your model class don’t need to extend another base class. You don’t need to modify any model file.</p>
+</blockquote>
+<p>一个快速、方便、无侵入性的Json转模型框架，不需要扩展基类，也不需要修改任何的模型文件。</p>
+<p><br><br><br></p>
+<h1 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h1><p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fxzbj1lc8vj30n90jjq74.jpg" alt=""></p>
+<h3 id="MJExtension-头文件"><a href="#MJExtension-头文件" class="headerlink" title="MJExtension(头文件)"></a><strong>MJExtension</strong>(头文件)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;NSObject+MJCoding.h&quot;</span><br><span class="line">#import &quot;NSObject+MJProperty.h&quot;</span><br><span class="line">#import &quot;NSObject+MJClass.h&quot;</span><br><span class="line">#import &quot;NSObject+MJKeyValue.h&quot;</span><br><span class="line">#import &quot;NSString+MJExtension.h&quot;</span><br><span class="line">#import &quot;MJExtensionConst.h&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 辅助类</span><br><span class="line">#import &quot;MJFoundation.h&quot;</span><br><span class="line">#import &quot;MJProperty.h&quot;</span><br><span class="line">#import &quot;MJPropertyKey.h&quot;</span><br><span class="line">#import &quot;MJPropertyType.h&quot;</span><br></pre></td></tr></table></figure>
+<p>这些类的命名很规范，根据类的名字大概就能猜到是用来做什么事情的。<br><br></p>
+<h3 id="MJExtensionConst"><a href="#MJExtensionConst" class="headerlink" title="MJExtensionConst"></a><strong>MJExtensionConst</strong></h3><p>这里定义了整个库的常量和宏定义。类似于一个项目中的预编译文件。包含了:</p>
+<ul>
+<li>方法弃用宏</li>
+<li>自定义Log日志</li>
+<li>自定义断言</li>
+<li>快速打印所有属性</li>
+<li>自定义类型编码字符串常量</li>
+</ul>
+<p>前面几个都很简单，没什么好说的，看一下最后一个“自定义类型编码字符串常量”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NSString *const MJPropertyTypeInt = @&quot;i&quot;;</span><br><span class="line">NSString *const MJPropertyTypeShort = @&quot;s&quot;;</span><br><span class="line">NSString *const MJPropertyTypeFloat = @&quot;f&quot;;</span><br><span class="line">NSString *const MJPropertyTypeDouble = @&quot;d&quot;;</span><br><span class="line">NSString *const MJPropertyTypeLong = @&quot;l&quot;;</span><br><span class="line">NSString *const MJPropertyTypeLongLong = @&quot;q&quot;;</span><br><span class="line">NSString *const MJPropertyTypeChar = @&quot;c&quot;;</span><br><span class="line">NSString *const MJPropertyTypeBOOL1 = @&quot;c&quot;;</span><br><span class="line">NSString *const MJPropertyTypeBOOL2 = @&quot;b&quot;;</span><br><span class="line">NSString *const MJPropertyTypePointer = @&quot;*&quot;;</span><br><span class="line"></span><br><span class="line">NSString *const MJPropertyTypeIvar = @&quot;^&#123;objc_ivar=&#125;&quot;;</span><br><span class="line">NSString *const MJPropertyTypeMethod = @&quot;^&#123;objc_method=&#125;&quot;;</span><br><span class="line">NSString *const MJPropertyTypeBlock = @&quot;@?&quot;;</span><br><span class="line">NSString *const MJPropertyTypeClass = @&quot;#&quot;;</span><br><span class="line">NSString *const MJPropertyTypeSEL = @&quot;:&quot;;</span><br><span class="line">NSString *const MJPropertyTypeId = @&quot;@&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>这里的类型编码就是按照下图苹果文档中的类型编码进行定义的，定义成const常量方便编码和阅读。<br><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxzf0c6djbj30ez0l5di4.jpg" alt=""></p>
+<p><br></p>
+<h3 id="MJFoundation-h"><a href="#MJFoundation-h" class="headerlink" title="MJFoundation.h"></a><strong>MJFoundation.h</strong></h3><p>这个类做的事情就是利用<strong>穷举法</strong>判断类是不是属于<code>Foundation</code>框架里面的。进行判断的类放在classMap里面，源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">foundationClasses = [NSSet setWithObjects:</span><br><span class="line">                            [NSURL class],</span><br><span class="line">                            [NSDate class],</span><br><span class="line">                            [NSValue class],</span><br><span class="line">                            [NSData class],</span><br><span class="line">                            [NSError class],</span><br><span class="line">                            [NSArray class],</span><br><span class="line">                            [NSDictionary class],</span><br><span class="line">                            [NSString class],</span><br><span class="line">                            [NSAttributedString class], nil];</span><br></pre></td></tr></table></figure></p>
+<p>然后遍历循环判断是否是属于Foundation框架，源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">__block BOOL result = NO;</span><br><span class="line">[foundationClasses enumerateObjectsUsingBlock:^(Class foundationClass, BOOL *stop) &#123;</span><br><span class="line">    if ([c isSubclassOfClass:foundationClass]) &#123;</span><br><span class="line">        result = YES;</span><br><span class="line">        *stop = YES;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>这里有个细节需要注意:result是BOOL类型，属于基础数据类型，在Block内部修改，需要先进行包装，既利用__block进行修饰，把result包装成对象类型，然后在block内部进行修改。</li>
+</ul>
+<h4 id="总结：其实就是一个工具分类-操作变量或者属性名"><a href="#总结：其实就是一个工具分类-操作变量或者属性名" class="headerlink" title="总结：其实就是一个工具分类,操作变量或者属性名"></a>总结：其实就是一个工具分类,操作变量或者属性名</h4><p><br></p>
+<h3 id="MJPropertyType"><a href="#MJPropertyType" class="headerlink" title="MJPropertyType"></a><strong>MJPropertyType</strong></h3><p>MJPropertyType对属性的具体类型进行封装，简单来说就是讲类型编码转为我们熟知的类型。暴露给外面使用，其属性如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  包装一种类型</span><br><span class="line">*/</span><br><span class="line">@interface MJPropertyType : NSObject</span><br><span class="line">/** 类型标识符 */</span><br><span class="line">@property (nonatomic, copy) NSString *code;</span><br><span class="line"></span><br><span class="line">/** 是否为id类型 */</span><br><span class="line">@property (nonatomic, readonly, getter=isIdType) BOOL idType;</span><br><span class="line"></span><br><span class="line">/** 是否为基本数字类型：int、float等 */</span><br><span class="line">@property (nonatomic, readonly, getter=isNumberType) BOOL numberType;</span><br><span class="line"></span><br><span class="line">/** 是否为BOOL类型 */</span><br><span class="line">@property (nonatomic, readonly, getter=isBoolType) BOOL boolType;</span><br><span class="line"></span><br><span class="line">/** 对象类型（如果是基本数据类型，此值为nil） */</span><br><span class="line">@property (nonatomic, readonly) Class typeClass;</span><br><span class="line"></span><br><span class="line">/** 类型是否来自于Foundation框架，比如NSString、NSArray */</span><br><span class="line">@property (nonatomic, readonly, getter = isFromFoundation) BOOL fromFoundation;</span><br><span class="line">/** 类型是否不支持KVC */</span><br><span class="line">@property (nonatomic, readonly, getter = isKVCDisabled) BOOL KVCDisabled;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  获得缓存的类型对象</span><br><span class="line">*/</span><br><span class="line">+ (instancetype)cachedTypeWithCode:(NSString *)code;</span><br></pre></td></tr></table></figure></p>
+<p>通过类方法初始化<code>+ (instancetype)cachedTypeWithCode:(NSString *)code</code>.<br><strong>因为总共的类型就如上提到的那几种，所以这里用了一个静态的字典保存结果。下次直接从结果中取，如果有则不用依次判断了</strong></p>
+<p>这里需要注意的是：参数类型转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if ([code isEqualToString:MJPropertyTypeId]) &#123;</span><br><span class="line">    _idType = YES;</span><br><span class="line">&#125; else if (code.length == 0) &#123;</span><br><span class="line">    _KVCDisabled = YES;</span><br><span class="line">&#125; else if (code.length &gt; 3 &amp;&amp; [code hasPrefix:@&quot;@\&quot;&quot;]) &#123;</span><br><span class="line">    // 去掉@&quot;和&quot;，截取中间的类型名称</span><br><span class="line">    _code = [code substringWithRange:NSMakeRange(2, code.length - 3)];</span><br><span class="line">    _typeClass = NSClassFromString(_code);</span><br><span class="line">    _fromFoundation = [MJFoundation isClassFromFoundation:_typeClass];</span><br><span class="line">    _numberType = [_typeClass isSubclassOfClass:[NSNumber class]];</span><br><span class="line"></span><br><span class="line">&#125; else if ([code isEqualToString:MJPropertyTypeSEL] ||</span><br><span class="line">    [code isEqualToString:MJPropertyTypeIvar] ||</span><br><span class="line">    [code isEqualToString:MJPropertyTypeMethod]) &#123;</span><br><span class="line">    _KVCDisabled = YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>传进来的<code>code</code>就是属性所对应的属性名称，比如<code>NSArray</code>对应<code>@&quot;NSArray&quot;</code>。自定义的类，签名都会有一个<code>@</code>符号，后面接上类名。形式如<code>@Classname</code>。<br><br></p>
+<h3 id="MJPropertyKey-h"><a href="#MJPropertyKey-h" class="headerlink" title="MJPropertyKey.h"></a><strong>MJPropertyKey.h</strong></h3><p>这个类是对属性进行分类。所有属性可以归为两类一种是字典，也就是键值对（<code>NSDictionary</code>）和数组（<code>NSArray</code>）。</p>
+<p>外面通过调用<code>- (id)valueInObject:(id)object</code>从传进来的<code>id</code>类型中取值。<br><br></p>
+<h3 id="MJProperty-h"><a href="#MJProperty-h" class="headerlink" title="MJProperty.h"></a><strong>MJProperty.h</strong></h3><p>对<code>objc_property_t</code>封装，存储一个属性值相关的详细信息，将<code>objc_property_t</code>转为能够直接用的对象。它是对<code>objc_property_t</code>类型的一次封装，便于我们使用。<br>同时它也依赖于上面所介绍的几种数据类型。从<code>.h</code>文件看到<code>#import &quot;MJPropertyType.h&quot; #import &quot;MJPropertyKey.h&quot;</code>。同样也依赖于<code>#import &quot;MJFoundation.h&quot; #import &quot;MJExtensionConst.h&quot;</code></p>
+<p>初始化入口函数<code>+ (instancetype)cachedPropertyWithProperty:(objc_property_t)property</code>。正如上面所说目的就是将<code>runtime</code>中的<code>objc_property_t</code>转为<code>MJProperty</code>方便我们的使用。</p>
+<p>具体实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 缓存</span><br><span class="line">+ (instancetype)cachedPropertyWithProperty:(objc_property_t)property</span><br><span class="line">&#123;</span><br><span class="line">    MJExtensionSemaphoreCreate</span><br><span class="line">    MJExtensionSemaphoreWait</span><br><span class="line">    MJProperty *propertyObj = objc_getAssociatedObject(self, property);</span><br><span class="line">    if (propertyObj == nil) &#123;</span><br><span class="line">        propertyObj = [[self alloc] init];</span><br><span class="line">        propertyObj.property = property;</span><br><span class="line">        objc_setAssociatedObject(self, property, propertyObj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">    &#125;</span><br><span class="line">    MJExtensionSemaphoreSignal</span><br><span class="line">    return propertyObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>MJProperty *propertyObj = objc_getAssociatedObject(self, property);</code>这句话是动态给类添加属性，也就是说，给类添加了一个属性名为<code>property</code>的<code>MJProperty</code>类型属性。<strong>注意这里是一个类方法，也就是这里的<code>self</code>代表什么。</strong></p>
+<p>这里的缓存方法是通过懒加载的形式实现的，将需要缓存的属性动态添加到类上面。如果没有则新加属性有则直接返回属性。这样做的目的是为了一个类可能在项目中会用到很多次字典转模型。所以保存一份之后就不用每次都创建新的属性标识了。<strong>以空间换时间</strong>把这个方法执行完，就得到了如下三个属性的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/** 成员属性 /</span><br><span class="line">@property (nonatomic, assign) objc_property_t property;</span><br><span class="line">/* 成员属性的名字 */</span><br><span class="line">@property (nonatomic, readonly) NSString *name;</span><br><span class="line">/** 成员属性的类型 */</span><br><span class="line">@property (nonatomic, readonly) MJPropertyType *type;</span><br></pre></td></tr></table></figure></p>
+<p>除了公开的属性还有两个私有属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@property (strong, nonatomic) NSMutableDictionary *propertyKeysDict;</span><br><span class="line">@property (strong, nonatomic) NSMutableDictionary *objectClassInArrayDict;</span><br></pre></td></tr></table></figure></p>
+<p>他们分别保存了的类型是<code>MJPropertyKey</code><br>通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 设置object的成员变量值</span><br><span class="line">*/</span><br><span class="line">- (void)setValue:(id)value forObject:(id)object;</span><br><span class="line">/**</span><br><span class="line">* 得到object的成员属性值</span><br><span class="line">*/</span><br><span class="line">- (id)valueForObject:(id)object;</span><br></pre></td></tr></table></figure></p>
+<p>对特定的属性存取值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**** 同一个成员属性 - 父类和子类的行为可能不一致（originKey、propertyKeys、objectClassInArray） ****/</span><br><span class="line">/** 设置最原始的key */</span><br><span class="line">- (void)setOriginKey:(id)originKey forClass:(Class)c;</span><br><span class="line">/** 对应着字典中的多级key（里面存放的数组，数组里面都是MJPropertyKey对象） */</span><br><span class="line">- (NSArray *)propertyKeysForClass:(Class)c;</span><br><span class="line"></span><br><span class="line">/** 模型数组中的模型类型 */</span><br><span class="line">- (void)setObjectClassInArray:(Class)objectClass forClass:(Class)c;</span><br><span class="line">- (Class)objectClassInArrayForClass:(Class)c;</span><br><span class="line">/**** 同一个成员变量 - 父类和子类的行为可能不一致（key、keys、objectClassInArray） ****/</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="NSObject-MJClass-h"><a href="#NSObject-MJClass-h" class="headerlink" title="NSObject+MJClass.h"></a><strong>NSObject+MJClass.h</strong></h3><p>这个类的功能大致可以归为<code>遍历</code>、<code>属性白名单</code>、<code>属性黑名单</code>。所以可以重点来看看这三个部分。</p>
+<p>外部通过<code>+ (NSMutableArray *)mj_totalIgnoredPropertyNames;</code>和<code>+ (NSMutableArray *)mj_totalAllowedCodingPropertyNames;</code>获得黑名单与白名单。<br>遍历就两个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  遍历所有的类</span><br><span class="line">*/</span><br><span class="line">+ (void)mj_enumerateClasses:(MJClassesEnumeration)enumeration;</span><br><span class="line">+ (void)mj_enumerateAllClasses:(MJClassesEnumeration)enumeration;</span><br></pre></td></tr></table></figure></p>
+<p><code>mj_enumerateClasses</code>只要当前遍历的是<code>Foundatoin</code>框架的就会退出遍历，否则会一直沿着继承树遍历。<code>mj_enumerateAllClasses</code>会遍历继承树上所有的类。<strong>为什么会存在遍历到<code>Foundatoin</code>框架就停止遍历了，因为我们自定义的模型大部分是继承至NSObject这中类型。这是为什么停止，那为什么要遍历。因为自定义的模型可能继承自己我们自定义的模型。为了保护所有的信息，比如属性信息，所以需要遍历。</strong></p>
+<p>注意这里的参数是其实是一个<code>typedef void (^MJClassesEnumeration)(Class c, BOOL *stop);</code>Block。写法有点类似系统中数组遍历。这种写法值得学习，平时我们遍历都是在类中直接调用一个方法，而通过这样传递<code>Block</code>这样就更加解耦了。其实也可以通过<code>Target-Action</code>模式实现。注意这里的<code>Bool</code>类型传的是指针哦，就像<code>*stop</code>。</p>
+<p>相关的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">+ (void)mj_enumerateClasses:(MJClassesEnumeration)enumeration</span><br><span class="line">&#123;</span><br><span class="line">    // 1.没有block就直接返回</span><br><span class="line">    if (enumeration == nil) return;</span><br><span class="line"></span><br><span class="line">    // 2.停止遍历的标记</span><br><span class="line">    BOOL stop = NO;</span><br><span class="line"></span><br><span class="line">    // 3.当前正在遍历的类</span><br><span class="line">    Class c = self;</span><br><span class="line"></span><br><span class="line">    // 4.开始遍历每一个类</span><br><span class="line">    while (c &amp;&amp; !stop) &#123;</span><br><span class="line">        // 4.1.执行操作</span><br><span class="line">        enumeration(c, &amp;stop);</span><br><span class="line"></span><br><span class="line">        // 4.2.获得父类</span><br><span class="line">        c = class_getSuperclass(c);</span><br><span class="line"></span><br><span class="line">        if ([MJFoundation isClassFromFoundation:c]) break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置白名单是为了对属性进行过滤。只有在白名单中的属性名才会进行字典和模型的转换。来说一下这里涉及的配置方法。</p>
+<p>外部调用者，通过类方法传入<code>Block</code>参数进行配置。<code>typedef NSArray * (^MJAllowedPropertyNames)();</code>这是传入的<code>Block</code>定义。可以看到返回的是一个数组。为什么不直接将白名单属性暴露处理出来给调用者直接使用呢？大概是遵循了设计模式中的<code>知道最少原则</code>。</p>
+<p>在<code>.m</code>文件中定义了几个保存白名单、黑名单的静态数组。定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static NSMutableDictionary *allowedPropertyNamesDict;</span><br><span class="line">static NSMutableDictionary *ignoredPropertyNamesDict;</span><br><span class="line">static NSMutableDictionary *allowedCodingPropertyNamesDict;</span><br><span class="line">static NSMutableDictionary *ignoredCodingPropertyNamesDict;</span><br></pre></td></tr></table></figure></p>
+<p>为了保存传入的Block信息，需要给分类动态添加属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static const char MJAllowedPropertyNamesKey = &apos;\0&apos;;</span><br><span class="line">static const char MJIgnoredPropertyNamesKey = &apos;\0&apos;;</span><br><span class="line">static const char MJAllowedCodingPropertyNamesKey = &apos;\0&apos;;</span><br><span class="line">static const char MJIgnoredCodingPropertyNamesKey = &apos;\0&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>比如这里的<code>MJAllowedPropertyNamesKey</code>就是白名单传进来的属性名称了。</p>
+<p>设置白名单的入口：最终调用的是<code>mj_setupBlockReturnValue</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - block和方法处理:存储block的返回值</span><br><span class="line">+ (void)mj_setupBlockReturnValue:(id (^)(void))block key:(const char *)key</span><br><span class="line">&#123;</span><br><span class="line">    if (block) &#123;</span><br><span class="line">        objc_setAssociatedObject(self, key, block(), OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        objc_setAssociatedObject(self, key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br><span class="line">    // 清空数据</span><br><span class="line">    [[self classDictForKey:key] removeAllObjects];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以很清楚的看到这里将block作为自身的属性。</p>
+<p><strong>除了这种方式还有一种：</strong>那就是在类中实现<code>mj_allowedPropertyNames</code>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(NSArray *)mj_allowedPropertyNames &#123;</span><br><span class="line">return @[@&quot;name&quot;,@&quot;icon&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后面获取可用属性的时候会对这两种方式都判断。</p>
+<h4 id="设置黑名单"><a href="#设置黑名单" class="headerlink" title="设置黑名单"></a><strong>设置黑名单</strong></h4><p>设置黑名单的方式和设置白名单类似。</p>
+<h4 id="最终可转换的数组"><a href="#最终可转换的数组" class="headerlink" title="最终可转换的数组"></a><strong>最终可转换的数组</strong></h4><p>调用这个方法<code>mj_totalIgnoredPropertyNames</code>就是返回经过过滤后的属性。一共有两种方式，一种是通过<code>Selecotr</code>一种是通过<code>Block</code>设置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">+ (NSMutableArray *)mj_totalObjectsWithSelector:(SEL)selector key:(const char *)key</span><br><span class="line">&#123;</span><br><span class="line">    MJExtensionSemaphoreCreate</span><br><span class="line">    MJExtensionSemaphoreWait</span><br><span class="line"></span><br><span class="line">    NSMutableArray *array = [self classDictForKey:key][NSStringFromClass(self)];</span><br><span class="line">    if (array == nil) &#123;</span><br><span class="line">        // 创建、存储</span><br><span class="line">        [self classDictForKey:key][NSStringFromClass(self)] = array = [NSMutableArray array];</span><br><span class="line"></span><br><span class="line">        if ([self respondsToSelector:selector]) &#123;</span><br><span class="line">    #pragma clang diagnostic push</span><br><span class="line">    #pragma clang diagnostic ignored &quot;-Warc-performSelector-leaks&quot;</span><br><span class="line">            NSArray *subArray = [self performSelector:selector];</span><br><span class="line">    #pragma clang diagnostic pop</span><br><span class="line">            if (subArray) &#123;</span><br><span class="line">                [array addObjectsFromArray:subArray];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [self mj_enumerateAllClasses:^(__unsafe_unretained Class c, BOOL *stop) &#123;</span><br><span class="line">        NSArray *subArray = objc_getAssociatedObject(c, key);</span><br><span class="line">        [array addObjectsFromArray:subArray];</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    MJExtensionSemaphoreSignal</span><br><span class="line"></span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="通过Selector"><a href="#通过Selector" class="headerlink" title="通过Selector"></a><strong>通过Selector</strong></h4><p><code>selector</code>是使用者如果想添加白名单需要自定义实现类方法<code>mj_allowedPropertyNames</code>。返回的是一个白名单数组。黑名单原理类似。<code>key</code>是指定过滤的是白名单还是黑名单。</p>
+<p><code>selector</code>的方式需要给对应的类添加一个类方法如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(NSArray *)mj_allowedPropertyNames &#123;</span><br><span class="line">    return @[@&quot;name&quot;,@&quot;icon&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="通过Block"><a href="#通过Block" class="headerlink" title="通过Block"></a><strong>通过Block</strong></h4><p>设置block属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (block) &#123;</span><br><span class="line">    objc_setAssociatedObject(self, key, block(), OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    objc_setAssociatedObject(self, key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>获取利用属性关联的block属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[self mj_enumerateAllClasses:^(__unsafe_unretained Class c, BOOL *stop) &#123;</span><br><span class="line">    NSArray *subArray = objc_getAssociatedObject(c, key);</span><br><span class="line">    [array addObjectsFromArray:subArray];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<h4 id="消除编译器警告"><a href="#消除编译器警告" class="headerlink" title="消除编译器警告"></a><strong>消除编译器警告</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Warc-performSelector-leaks&quot;</span><br><span class="line">NSArray *subArray = [self performSelector:selector];</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
+<p>这里的’-Warc-performSelector-leaks’是消除编译器报内存泄漏的警告<br>当我们确定编译器的警告对我们来说没用处的时候，为了避免出现警告，可以使用如下代码来忽略此警告：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;xx要忽略的警告类型xx&quot;</span><br><span class="line">    xx要忽略警告的代码段xx</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="NSObject-MJCoding-h"><a href="#NSObject-MJCoding-h" class="headerlink" title="NSObject+MJCoding.h"></a><strong>NSObject+MJCoding.h</strong></h3><p>这个类是用于归档。只有实现了<code>MJCoding</code>协议的类才能够归档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@optional</span><br><span class="line">/**</span><br><span class="line">*  这个数组中的属性名才会进行归档</span><br><span class="line">*/</span><br><span class="line">+ (NSArray *)mj_allowedCodingPropertyNames;</span><br><span class="line">/**</span><br><span class="line">*  这个数组中的属性名将会被忽略：不进行归档</span><br><span class="line">*/</span><br><span class="line">+ (NSArray *)mj_ignoredCodingPropertyNames;</span><br></pre></td></tr></table></figure></p>
+<p>在进行归档的时候，我们只需要在<code>Implemenion</code>中添加<code>MJExtensionCodingImplementation</code>。实际上是宏定义了<code>NSCode</code>进行归档，解档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">归档的实现</span><br><span class="line">*/</span><br><span class="line">#define MJCodingImplementation \</span><br><span class="line">- (id)initWithCoder:(NSCoder *)decoder \</span><br><span class="line">&#123; \</span><br><span class="line">if (self = [super init]) &#123; \</span><br><span class="line">[self mj_decode:decoder]; \</span><br><span class="line">&#125; \</span><br><span class="line">return self; \</span><br><span class="line">&#125; \</span><br><span class="line">\</span><br><span class="line">- (void)encodeWithCoder:(NSCoder *)encoder \</span><br><span class="line">&#123; \</span><br><span class="line">[self mj_encode:encoder]; \</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#define MJExtensionCodingImplementation MJCodingImplementation</span><br></pre></td></tr></table></figure></p>
+<p>至于归档解档的部分可以直接看.m文件中的实现。</p>
+<p><br></p>
+<h3 id="NSObject-MJProperty-h"><a href="#NSObject-MJProperty-h" class="headerlink" title="NSObject+MJProperty.h"></a><strong>NSObject+MJProperty.h</strong></h3><p>这个类保存的属性的一些配置。大致可分为：</p>
+<ul>
+<li>1.遍历属性</li>
+<li>2.新值配置</li>
+<li>3.key配置</li>
+<li>4.array model class配置</li>
+</ul>
+<h4 id="遍历属性"><a href="#遍历属性" class="headerlink" title="遍历属性"></a><strong>遍历属性</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  遍历所有的成员</span><br><span class="line">*/</span><br><span class="line">+ (void)mj_enumerateProperties:(MJPropertiesEnumeration)enumeration;</span><br></pre></td></tr></table></figure>
+<p>遍历所有属性的入口。这个方法在很多地方都存在过。属性会从缓存中取，<code>NSArray *cachedProperties = [self properties];</code>。<code>[self properties]</code>是缓存属性的部分。然后就直接遍历所有的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+ (void)mj_enumerateProperties:(MJPropertiesEnumeration)enumeration</span><br><span class="line">&#123;</span><br><span class="line">    // 获得成员变量</span><br><span class="line">    NSArray *cachedProperties = [self properties];</span><br><span class="line"></span><br><span class="line">    // 遍历成员变量</span><br><span class="line">    BOOL stop = NO;</span><br><span class="line">    for (MJProperty *property in cachedProperties) &#123;</span><br><span class="line">        enumeration(property, &amp;stop);</span><br><span class="line">        if (stop) break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里遍历用了<code>block</code>,外部传递<code>block</code>进来遍历。<code>typedef void (^MJPropertiesEnumeration)(MJProperty *property, BOOL *stop);</code>这个库很多地方都用到了类似的遍历方式。</p>
+<h4 id="新值配置"><a href="#新值配置" class="headerlink" title="新值配置"></a><strong>新值配置</strong></h4><p>新值配置是什么意思？：就是改变特定的属性的原有值，这样更加灵活。</p>
+<p>同样有两种方式<code>Block</code>和<code>类方法</code>。</p>
+<p>存取方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  用于过滤字典中的值</span><br><span class="line">*</span><br><span class="line">*  @param newValueFormOldValue 用于过滤字典中的值</span><br><span class="line">*/</span><br><span class="line">+ (void)mj_setupNewValueFromOldValue:(MJNewValueFromOldValue)newValueFormOldValue;</span><br><span class="line">+ (id)mj_getNewValueFromObject:(__unsafe_unretained id)object oldValue:(__unsafe_unretained id)oldValue property:(__unsafe_unretained MJProperty *)property;</span><br></pre></td></tr></table></figure></p>
+<p>这里的<code>typedef id (^MJNewValueFromOldValue)(id object, id oldValue, MJProperty *property);</code>其实和下面方法参数形式是一样的。</p>
+<p>看了一下这个方法，一次只支持一个属性新值配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (void)mj_setupNewValueFromOldValue:(MJNewValueFromOldValue)newValueFormOldValue</span><br><span class="line">&#123;</span><br><span class="line">    objc_setAssociatedObject(self, &amp;MJNewValueFromOldValueKey, newValueFormOldValue, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如何获取新？肯定需要兼容两种设置方式，一种<code>Block</code>,一种通过方法设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+ (id)mj_getNewValueFromObject:(__unsafe_unretained id)object oldValue:(__unsafe_unretained id)oldValue property:(MJProperty *__unsafe_unretained)property&#123;</span><br><span class="line">    // 如果有实现方法</span><br><span class="line">    if ([object respondsToSelector:@selector(mj_newValueFromOldValue:property:)]) &#123;</span><br><span class="line">    return [object mj_newValueFromOldValue:oldValue property:property];</span><br><span class="line">    &#125;</span><br><span class="line">    // 兼容旧版本</span><br><span class="line">    if ([self respondsToSelector:@selector(newValueFromOldValue:property:)]) &#123;</span><br><span class="line">        return [self performSelector:@selector(newValueFromOldValue:property:)  withObject:oldValue  withObject:property];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 查看静态设置</span><br><span class="line">    __block id newValue = oldValue;</span><br><span class="line">    [self mj_enumerateAllClasses:^(__unsafe_unretained Class c, BOOL *stop) &#123;</span><br><span class="line">        MJNewValueFromOldValue block = objc_getAssociatedObject(c, &amp;MJNewValueFromOldValueKey);</span><br><span class="line">        if (block) &#123;</span><br><span class="line">            newValue = block(object, oldValue, property);</span><br><span class="line">            *stop = YES;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br><span class="line">    return newValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="key配置"><a href="#key配置" class="headerlink" title="key配置"></a><strong>key配置</strong></h4><p><code>key</code>配置是解决属性名成需要重新定义的情况，这个配置统一通过<code>Block</code>设置。<br>这里注意到为什么在动态添加了属性之后需要将<code>cachedPropertiesDict_</code>字典里面的清空一次。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - key配置</span><br><span class="line">+ (void)mj_setupReplacedKeyFromPropertyName:(MJReplacedKeyFromPropertyName)replacedKeyFromPropertyName</span><br><span class="line">&#123;</span><br><span class="line">[self mj_setupBlockReturnValue:replacedKeyFromPropertyName key:&amp;MJReplacedKeyFromPropertyNameKey];</span><br><span class="line"></span><br><span class="line">[[self propertyDictForKey:&amp;MJCachedPropertiesKey] removeAllObjects];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (void)mj_setupReplacedKeyFromPropertyName121:(MJReplacedKeyFromPropertyName121)replacedKeyFromPropertyName121</span><br><span class="line">&#123;</span><br><span class="line">objc_setAssociatedObject(self, &amp;MJReplacedKeyFromPropertyName121Key, replacedKeyFromPropertyName121, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line"></span><br><span class="line">[[self propertyDictForKey:&amp;MJCachedPropertiesKey] removeAllObjects];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样做的目的是为了保证缓存数组中的数据是最新的。因为我们替换了属性的key，所以要用最新的。在获取所有属性中。有这么一段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *cachedProperties = [self propertyDictForKey:&amp;MJCachedPropertiesKey][NSStringFromClass(self)];</span><br><span class="line"></span><br><span class="line">if (cachedProperties == nil) &#123;</span><br><span class="line">    cachedProperties = [NSMutableArray array];</span><br><span class="line"></span><br><span class="line">    [self mj_enumerateClasses:^(__unsafe_unretained Class c, BOOL *stop) &#123;</span><br><span class="line">    // 1.获得所有的成员变量</span><br><span class="line">    </span><br><span class="line">        ......</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到只有属性为空才会遍历类，获取最新属性。</p>
+<h4 id="array-model-class配置"><a href="#array-model-class配置" class="headerlink" title="array model class配置"></a><strong>array model class配置</strong></h4><p>这个方法是处理模型中包含一另一个模型数组。在实际运用比较多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - array model class配置</span><br><span class="line">+ (void)mj_setupObjectClassInArray:(MJObjectClassInArray)objectClassInArray</span><br><span class="line">&#123;</span><br><span class="line">    [self mj_setupBlockReturnValue:objectClassInArray key:&amp;MJObjectClassInArrayKey];</span><br><span class="line"></span><br><span class="line">    [[self propertyDictForKey:&amp;MJCachedPropertiesKey] removeAllObjects];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>和上面的方式一样，会将最终会作为类的一个属性将模型数组字典保存下来。方便后面使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">static const char MJReplacedKeyFromPropertyNameKey = &apos;\0&apos;;</span><br><span class="line">static const char MJReplacedKeyFromPropertyName121Key = &apos;\0&apos;;</span><br><span class="line">static const char MJNewValueFromOldValueKey = &apos;\0&apos;;</span><br><span class="line">static const char MJObjectClassInArrayKey = &apos;\0&apos;;</span><br><span class="line"></span><br><span class="line">static const char MJCachedPropertiesKey = &apos;\0&apos;;</span><br></pre></td></tr></table></figure>
+<p>这是<code>NSObject+MJProperty.h</code>动态添加的所有属性。通过名字可以知道它的用途。</p>
+<p><br></p>
+<h3 id="NSObject-MJKeyValue-h"><a href="#NSObject-MJKeyValue-h" class="headerlink" title="NSObject+MJKeyValue.h"></a><strong>NSObject+MJKeyValue.h</strong></h3><p>这个类中有一个很重要的协议<code>MJKeyValue</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  只有这个数组中的属性名才允许进行字典和模型的转换</span><br><span class="line">*/</span><br><span class="line">+ (NSArray *)mj_allowedPropertyNames;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  这个数组中的属性名将会被忽略：不进行字典和模型的转换</span><br><span class="line">*/</span><br><span class="line">+ (NSArray *)mj_ignoredPropertyNames;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  将属性名换为其他key去字典中取值</span><br><span class="line">*</span><br><span class="line">*  @return 字典中的key是属性名，value是从字典中取值用的key</span><br><span class="line">*/</span><br><span class="line">+ (NSDictionary *)mj_replacedKeyFromPropertyName;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  将属性名换为其他key去字典中取值</span><br><span class="line">*</span><br><span class="line">*  @return 从字典中取值用的key</span><br><span class="line">*/</span><br><span class="line">+ (id)mj_replacedKeyFromPropertyName121:(NSString *)propertyName;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  数组中需要转换的模型类</span><br><span class="line">*</span><br><span class="line">*  @return 字典中的key是数组属性名，value是数组中存放模型的Class（Class类型或者NSString类型）</span><br><span class="line">*/</span><br><span class="line">+ (NSDictionary *)mj_objectClassInArray;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  旧值换新值，用于过滤字典中的值</span><br><span class="line">*</span><br><span class="line">*  @param oldValue 旧值</span><br><span class="line">*</span><br><span class="line">*  @return 新值</span><br><span class="line">*/</span><br><span class="line">- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  当字典转模型完毕时调用</span><br><span class="line">*/</span><br><span class="line">- (void)mj_keyValuesDidFinishConvertingToObject;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*  当模型转字典完毕时调用</span><br><span class="line">*/</span><br><span class="line">- (void)mj_objectDidFinishConvertingToKeyValues;</span><br></pre></td></tr></table></figure></p>
+<p>这里的协议规定了白名单、黑名单。之前分析过通过<code>block</code>的形式同样能够实现黑、白名单。我猜测这个文件是很久之前就有了为了兼容性，所以这种设置白、黑名单的方式一致保留着。</p>
+<p><strong>这也是我们分析的最后一个类，可能也是最复杂的一个类</strong></p>
+<p>分别是：</p>
+<ul>
+<li>类方法<ul>
+<li>错误定义</li>
+<li>转换字典<code>replace</code>设置</li>
+<li>模型转字典<ul>
+<li>转所有属性</li>
+<li>制定部分属性转</li>
+<li>忽略部分属性转</li>
+<li>模型数组转字典数组</li>
+</ul>
+</li>
+<li>字典转模型<ul>
+<li>字典转为模型（可以是NSDictionary、NSData、NSString）</li>
+<li>字典转为模型（可以是NSDictionary、NSData、NSString）<strong>CoreData支持</strong></li>
+</ul>
+</li>
+<li>字典数组转模型数组<ul>
+<li>字典数组来创建一个模型数组（可以是NSDictionary、NSData、NSString）</li>
+<li>字典数组来创建一个模型数组（可以是NSDictionary、NSData、NSString）<strong>CoreData支持</strong></li>
+<li>plist来创建一个模型数组<ul>
+<li>仅限于mainBundle中的文件</li>
+<li>文件全路径</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模型转json、字典、数组<ul>
+<li>转换为JSON Data</li>
+<li>转换为字典或者数组</li>
+<li>转换为JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对象方法<ul>
+<li>字典转模型<ul>
+<li>字典转为模型（可以是NSDictionary、NSData、NSString）</li>
+<li>字典转为模型（可以是NSDictionary、NSData、NSString）<strong>CoreData支持</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>上面所列的内容就是这个框架提供给使用者的所有功能了。这个部分就是把之前分析的内容串在一起。实现这些功能。</p>
+<p>我们从最常用的<code>+ (instancetype)mj_objectWithKeyValues:(id)keyValues;</code>方法入手。从头到尾走一遍这个流程。</p>
+<p>直接看最核心部分。入口就是<code>- (instancetype)mj_setKeyValues:(id)keyValues context:(NSManagedObjectContext *)context</code>这个方法。我们把外部的字典，json传入，最终把字典的<code>key</code>映射到对应的属性上，<code>value</code>成为这个属性的值。</p>
+<h4 id="参数过滤"><a href="#参数过滤" class="headerlink" title="参数过滤"></a><strong>参数过滤</strong></h4><p>第一步肯定是对参数合法性进行校验。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 获得JSON对象</span><br><span class="line">keyValues = [keyValues mj_JSONObject];</span><br><span class="line"></span><br><span class="line">MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], self, [self class], @&quot;keyValues参数不是一个字典&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>经过转换后还不是字典类型就直接抛出异常。</p>
+<h4 id="黑名单，白名单过滤"><a href="#黑名单，白名单过滤" class="headerlink" title="黑名单，白名单过滤"></a><strong>黑名单，白名单过滤</strong></h4><p>接下来如果使用者配置了属性的白名单或者黑名单，则会对取出黑白名单。在遍历类的属性的时候过滤掉。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSArray *allowedPropertyNames = [clazz mj_totalAllowedPropertyNames];</span><br><span class="line">NSArray *ignoredPropertyNames = [clazz mj_totalIgnoredPropertyNames];</span><br></pre></td></tr></table></figure></p>
+<p>因为属性列表是在类对象上，所以自然去<code>NSObject+MJClass.h</code>调用。这个类主要功能就是提供了黑白名单的存储。<br><code>NSObject+MJClass.h</code>中存储的黑白名单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static const char MJAllowedPropertyNamesKey = &apos;\0&apos;; // 白名单</span><br><span class="line">static const char MJIgnoredPropertyNamesKey = &apos;\0&apos;; // 黑名单</span><br><span class="line">static const char MJAllowedCodingPropertyNamesKey = &apos;\0&apos;; // 归档白名单</span><br><span class="line">static const char MJIgnoredCodingPropertyNamesKey = &apos;\0&apos;; // 归档黑名单</span><br></pre></td></tr></table></figure></p>
+<h4 id="遍历类的所有属性"><a href="#遍历类的所有属性" class="headerlink" title="遍历类的所有属性"></a><strong>遍历类的所有属性</strong></h4><p>接下来就是对类的每个属性处理，比如替换，忽略等。涉及到属性的是在<code>NSObject+MJProperty.h</code>类中完成的。比如遍历就是。</p>
+<p>通过传入<code>block</code>,在遍历的同时对属性就行处理。形式就像通过<code>enumerateObjectsUsingBlock:</code>遍历。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[someArray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) &#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
+<p>遍历属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[clazz mj_enumerateProperties:^(MJProperty *property, BOOL *stop) &#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p>如果属性在白名单或者黑名单中出现在则直接跳出这次循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (allowedPropertyNames.count &amp;&amp; ![allowedPropertyNames containsObject:property.name]) return;</span><br><span class="line">if ([ignoredPropertyNames containsObject:property.name]) return;</span><br></pre></td></tr></table></figure>
+<p>取出属性对应的值，当然这里增加了对值得过滤，比如设置了新值替换旧的值。如果最终取出的结果中没有值，则直接返回。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 0.检测是否被忽略</span><br><span class="line">if (allowedPropertyNames.count &amp;&amp; ![allowedPropertyNames containsObject:property.name]) return;</span><br><span class="line">if ([ignoredPropertyNames containsObject:property.name]) return;</span><br><span class="line"></span><br><span class="line">// 1.取出属性值</span><br><span class="line">id value;</span><br><span class="line">NSArray *propertyKeyses = [property propertyKeysForClass:clazz];</span><br><span class="line">for (NSArray *propertyKeys in propertyKeyses) &#123;</span><br><span class="line">value = keyValues;</span><br><span class="line">for (MJPropertyKey *propertyKey in propertyKeys) &#123;</span><br><span class="line">value = [propertyKey valueInObject:value];</span><br><span class="line">&#125;</span><br><span class="line">if (value) break;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 值的过滤</span><br><span class="line">id newValue = [clazz mj_getNewValueFromObject:self oldValue:value property:property];</span><br><span class="line">if (newValue != value) &#123; // 有过滤后的新值</span><br><span class="line">[property setValue:newValue forObject:self];</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 如果没有值，就直接返回</span><br><span class="line">if (!value || value == [NSNull null]) return;</span><br></pre></td></tr></table></figure></p>
+<p>接下里就是最终处理部分了，这时候属性的<code>key</code>和<code>value</code>都是合法的了。</p>
+<ul>
+<li>1.剩下的就是处理属性。比如讲不可变数组转为可变数组。</li>
+<li>2.如果不是<code>Foundation</code>框架的类，也就是继承至自定义模型的需要递归遍历。</li>
+<li>3.对模型数组的处理</li>
+<li>4.如果是<code>Foundation</code>框架中的。这个部分就可以直接给<code>value</code>赋值了。</li>
+<li>5.最终<code>KVC</code>给属性赋值。<code>[property setValue:value forObject:self];</code></li>
+</ul>
+<p><br><br><br></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到这里基本MJExtension的源码也就解读完毕了。通过读源码，我们会学到很多平时没怎么注意的知识点，比如类型编码、属性的遍历、白名单配置、编译器警告的忽略等，另外就是开源框架的严谨业务逻辑<br>部分，很值得我们去学习的体会。<br><strong>阅读完源码，我也模仿着源码自己写了一个简单的字典转模型框架：</strong><a href="https://github.com/xxzizixx/YBJson" target="_blank" rel="noopener"><strong>YBJson</strong></a><strong>：<a href="https://github.com/xxzizixx/YBJson" target="_blank" rel="noopener">https://github.com/xxzizixx/YBJson</a></strong><br>如果你也阅读了源码，觉得体会很多，那么你也可以试着自己动手去模仿着写一下，印象会更深刻哟～</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/11/08/2016/11/iOS中的armv7、armv7s、arm64、i386、x86_64代表什么/" title="iOS中的armv7、armv7s、arm64、i386、x86_64等指令集的作用">iOS中的armv7、armv7s、arm64、i386、x86_64等指令集的作用</a></h2>
+                <p class="excerpt">
+                
+                
+前序我们常常在开发中看到一些熟悉的字眼armv7、armv7s、arm64、i386、x86_64，但是又都不太清楚他们具体表达的什么，还时常会弄混淆。那么，他们到底是什么呢？我们在Xcode中又该如何选择？
+概念armarm处理器，特点是体积小、低功耗、低成本、高性能，所以几乎所有手机处理器都基
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-11-08T02:17:12.000Z" class="post-list__meta--date date">2016-11-08</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2016/11/08/2016/11/iOS中的armv7、armv7s、arm64、i386、x86_64代表什么/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/04/17/2016/04/Weak的实现原理/" title="Weak的实现原理">Weak的实现原理</a></h2>
+                <p class="excerpt">
+                
+                很少有人知道weak表其实是一个hash（哈希）表，Key是所指对象的地址，Value是weak指针的地址数组。更多人的人只是知道weak是弱引用，所引用对象的计数器不会加一，并在引用对象被释放的时候自动被设置为nil。通常用于解决循环引用问题。但现在单知道这些已经不足以应对面试了，好多公司会问we
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-04-17T10:44:04.000Z" class="post-list__meta--date date">2016-04-17</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2016/04/17/2016/04/Weak的实现原理/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>
