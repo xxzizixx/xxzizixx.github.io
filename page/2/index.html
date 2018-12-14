@@ -47,7 +47,7 @@
     </span>
 
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+<header class="panel-cover " style="background-image: url(/images/background-cover.jpg)">
   <div class="panel-main">
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
@@ -124,24 +124,29 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2017/11/26/2017/11/开发中用到的工具记录/" title="link to post.title">开发中用到的工具记录</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/" title="link to post.title">Copy修饰和深浅复制以及NSMutableObject的修饰词</a></h2>
       <p class="excerpt">
     
-      
- 记录一下在开发的过程中使用到的一些小工具，这些小工具给我们带来了极大的便利。 (什么Xcode、Git、CocoaPods等就不写了，基本配置)
-go2shellGo2Shell 可以在 Finder 中打开当前目录的终端窗口，是一个对开发者来说非常有用的App。特点：软件开发工具、小巧（大概只有2M）、免费、功能简单易用。
-iTermiTerm 是一个为Mac OS X编写的，功能齐全的终端
+      先说结论1：对于不可变对象，copy都是浅复制，即指针复制。mutableCopy 都是alloc一个新对象返回。2：对于可变对象，copy和mutableCopy都是alloc新对象返回。3：不论是可变还是不可变对象，copy返回的对象都是不可变的，mutableCopy返回的对象都是可变的。4：容器类对象，不论是可变的还是不可变的，copy，mutableCopy返回的对象里所包含的对象的地址
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2017-11-26T03:21:19.000Z" class="post-list__meta--date date">2017-11-26</time> &#8226; <span class="post-list__meta--tags tags"> 
+      <div class="post-list__meta"><time datetime="2015-07-07T09:44:04.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-list__meta--tags tags"> 
   
-</span><a class="btn-border-small" href="/2017/11/26/2017/11/开发中用到的工具记录/">继续阅读</a></div>
+</span><a class="btn-border-small" href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/">继续阅读</a></div>
       <hr class="post-list__divider">
     </li>
   
     
   </ol>
 
+
+  <nav class="pagination" role="navigation">
+    
+      <a class="older-posts pagination__newer btn btn-small btn-tertiary" href="/#blog">&larr; 最近</a>
+    
+    <span class="pagination__page-number">  2 / 2 </span>
+    
+  </nav>
 
  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },

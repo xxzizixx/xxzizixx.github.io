@@ -124,92 +124,29 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/12/13/2018/12/基于OAuth2和SSO的开放平台/" title="link to post.title">基于OAuth2的开放平台</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/" title="link to post.title">Copy修饰和深浅复制以及NSMutableObject的修饰词</a></h2>
       <p class="excerpt">
     
-      
-前序最近部门搭建了一个基于OAuth2和SSO的统一用户认证开放平台，因为是搭建初期，文档和平台建设还不够完善，需要对接的第三方又比较多，所以大伙都在忙着充当一个“开放平台客服”的角色在忙着辅助第三方接入平台的事情。那么，既然是辅助别人接入，首先我们自己就得搞清楚一下三个问题：
-
-什么是开放平台?
-什么是OAuth2?
-什么是SSO？带着这三个问题的思考，进行下面的阅读。
-
-
-开放平台介绍什么是
+      先说结论1：对于不可变对象，copy都是浅复制，即指针复制。mutableCopy 都是alloc一个新对象返回。2：对于可变对象，copy和mutableCopy都是alloc新对象返回。3：不论是可变还是不可变对象，copy返回的对象都是不可变的，mutableCopy返回的对象都是可变的。4：容器类对象，不论是可变的还是不可变的，copy，mutableCopy返回的对象里所包含的对象的地址
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2018-12-13T10:51:19.000Z" class="post-list__meta--date date">2018-12-13</time> &#8226; <span class="post-list__meta--tags tags"> </span><a class="btn-border-small" href="/2018/12/13/2018/12/基于OAuth2和SSO的开放平台/">继续阅读</a></div>
-      <hr class="post-list__divider">
-    </li>
+      <div class="post-list__meta"><time datetime="2015-07-07T09:44:04.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-list__meta--tags tags"> 
   
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/11/16/2018/11/Xcode Template：工程模版、子工程模版、类文件模版/" title="link to post.title">Xcode Template：工程模版、子工程模版、类文件模版</a></h2>
-      <p class="excerpt">
-    
-      
-前序一直准备写一篇关于Xcode Template模版制作的文章，昨天听同事提到Xcode Template，并决定抽时间写一篇关于Xcode Template制作的文章，文章包括三部分：
-
-为什么要定义这些模版
-Xcode工程模版和子工程模版
-Xcode的类文件模版
-
-
-为什么要定义这些模版遵守代码规范可以提高代码可读性, 降低后期维护成本. 当我们定下了一个团队都认同的代码规范, 如我们要求
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2018-11-16T06:57:41.000Z" class="post-list__meta--date date">2018-11-16</time> &#8226; <span class="post-list__meta--tags tags"> 
-  
-</span><a class="btn-border-small" href="/2018/11/16/2018/11/Xcode Template：工程模版、子工程模版、类文件模版/">继续阅读</a></div>
-      <hr class="post-list__divider">
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/10/14/2018/10/Cocoapod建立自己的仓库/" title="link to post.title">CocoaPods建立自己的仓库</a></h2>
-      <p class="excerpt">
-    
-      
-前序作为iOS开发，无论你是小白还是远古时代MRC的大神，相信没有人不知道CocoaPods，如果不知道的话，那么你应该去面壁十分钟怀疑自己了～github几乎所有（或者说全部）优秀的iOS开源框架都提供了Cocoapods Installation方式，由此可见，CocoaPods的使用为我们开发带来了极大的便利。那么问题来了：我们改如何去构建自己的Cocoapods仓库呢？
-CocoaPod
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2018-10-14T11:11:15.000Z" class="post-list__meta--date date">2018-10-14</time> &#8226; <span class="post-list__meta--tags tags"> 
-  
-</span><a class="btn-border-small" href="/2018/10/14/2018/10/Cocoapod建立自己的仓库/">继续阅读</a></div>
-      <hr class="post-list__divider">
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/09/28/2018/09/LLVM编译器之Clang前端/" title="link to post.title">LLVM编译器之Clang前端</a></h2>
-      <p class="excerpt">
-    
-      前沿
-瞻仰大佬
-Chris Lattner
-三大杰作：
-
-Clang
-LLVM
-Swift
-
-
-2010年开始编写 Swift语言,而且一个人实现了Swift的大部分基础架构；他也是 LVVM 以及 Clang的主要开发者。
-什么是LLVMLLVM官网
-
-The LLVM Project is a collection of modular and reusable compiler and to
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2018-09-28T08:24:17.000Z" class="post-list__meta--date date">2018-09-28</time> &#8226; <span class="post-list__meta--tags tags"> 
-  
-</span><a class="btn-border-small" href="/2018/09/28/2018/09/LLVM编译器之Clang前端/">继续阅读</a></div>
+</span><a class="btn-border-small" href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/">继续阅读</a></div>
       <hr class="post-list__divider">
     </li>
   
     
   </ol>
 
+
+  <nav class="pagination" role="navigation">
+    
+      <a class="older-posts pagination__newer btn btn-small btn-tertiary" href="/#blog">&larr; 最近</a>
+    
+    <span class="pagination__page-number">  2 / 2 </span>
+    
+  </nav>
 
  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
