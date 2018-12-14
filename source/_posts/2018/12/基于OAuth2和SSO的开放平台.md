@@ -107,7 +107,7 @@ tags:
 `通俗应景的理解`：
 > OAuth2协议，定义了一套用户、第三方服务和存储着用户数据的平台之间的交互规则，可以使得用户无需将自己的用户名和密码暴露给第三方，即可使第三方应用获取用户在该平台上的数据，最常见的场景便是现在互联网上的各种使用XXX账号登录。
 
-![](https://ws3.sinaimg.cn/large/006tNbRwgy1fy63ef7or1j30m60c4myh.jpg)
+![](https://ws4.sinaimg.cn/large/006tNbRwgy1fy688nq4tjj30vv0g5jw8.jpg)
 
 <br>
 
