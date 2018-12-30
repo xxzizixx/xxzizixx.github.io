@@ -1,0 +1,1119 @@
+{
+  "sections": [
+    {
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/adba02fc-cbdf-47af-9b67-0b55f7071d56_1545183619021",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "社保查询",
+              "debugURL": "https://test1-city.pingan.com.cn/static/society/06/socialQSMT/#/main?cityCode=440300",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/society/06/socialQSMT/#/main?cityCode=440300",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-社保",
+            "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/9357006a-93bd-46ce-9918-b37c35805ccb_1542968117093",
+            "identifier": "01_Other_SocialSecurity",
+            "keyWord": "社保查询",
+            "label": "",
+            "name": "社保查询",
+            "nativePage": "SocialQuery",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "社保"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/af7509ed-d098-4aa6-b184-cd7b5eaaf2ee_1542968117467",
+          "iconSub": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/a7aac054-80b6-4dbe-ba99-17190ce05f70_1545183619489",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "公积金查询",
+              "debugURL": "https://weixin.szzfgjj.com/WheatInterface/index.html?view=my-account&cityid=440300&from=singlemessage",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://weixin.szzfgjj.com/WheatInterface/index.html?view=my-account&cityid=440300&from=singlemessage",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-公积金",
+            "identifier": "Service.SocialSecurity.CPFInquiry",
+            "keyWord": "公积金查询",
+            "label": "",
+            "name": "公积金查询",
+            "nativePage": "BindingMyHousingFund",
+            "needLogin": true,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "公积金"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/51f789cf-5dca-45aa-acd9-a0a23aca2a53_1542968115973",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "政策法规",
+              "debugURL": "http://iqsz-d6889:8090/pages/viewpage.action?pageId=5570898",
+              "productionURL": "http://iqsz-d6889:8090/pages/viewpage.action?pageId=5570898",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-政策法规",
+            "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/51f789cf-5dca-45aa-acd9-a0a23aca2a53_1542968115973",
+            "identifier": "RegulationsMainActivity",
+            "keyWord": "政策法规",
+            "label": "",
+            "name": "政策法规",
+            "nativePage": "LawAndPolicy",
+            "needLogin": false,
+            "type": "CommonH5",
+            "verifyTokenByServer": false
+          },
+          "title": "政策法规"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/dc218a90-64bb-49bb-9cba-f88e9f424a43_1542968116984",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "食品扫码",
+              "debugURL": "",
+              "dynamicTitleEnable": false,
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-食品扫码",
+            "identifier": "Service.GovernmentAffairs.FoodScan",
+            "keyWord": "食品扫码",
+            "label": "",
+            "name": "食品扫码",
+            "nativePage": "FoodScan",
+            "needLogin": true,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "食品扫码"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/a9c52d62-2fcb-4595-b555-f2a92fa70f1c_1545183619852",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "预约挂号",
+              "debugURL": "",
+              "dynamicTitleEnable": false,
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-挂号",
+            "identifier": "Service.MedicalAndHealth.AppointmentRegistration",
+            "keyWord": "预约挂号",
+            "label": "",
+            "name": "预约挂号",
+            "nativePage": "MedicalAppointmentHospital",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "挂号"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/4b053e6c-5611-4b3f-9d10-c13545dcbc77_1542968117875",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-违章",
+            "identifier": "Service.CarsAndTravel.VehicleViolation",
+            "keyWord": "车辆违章",
+            "label": "车主用户",
+            "name": "车辆违章",
+            "nativePage": "CarTrafficViolation",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "违章"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/a6c80aef-14a4-41b4-8099-08f19c0345cb_1543889325735",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "智慧停车",
+              "debugURL": "",
+              "dynamicTitleEnable": false,
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/a6c80aef-14a4-41b4-8099-08f19c0345cb_1543889325735",
+            "identifier": "Service.Common.FeeleesPay",
+            "keyWord": "智慧停车",
+            "label": "",
+            "name": "智慧停车",
+            "nativePage": "FeellessPay",
+            "needLogin": true,
+            "type": "Native",
+            "verifyTokenByServer": true
+          },
+          "title": "智慧停车"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/92eb3ecf-5299-4857-af82-a723071575a4_1542968118287",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-常用服务-全部",
+            "identifier": "Service.Others.LegalOnlineQA",
+            "keyWord": "全部",
+            "label": "",
+            "name": "全部",
+            "nativePage": "ALL",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "全部"
+        }
+      ],
+      "layout": 12,
+      "showNews": false,
+      "type": "NORMAL_SERVICE"
+    },
+    {
+      "header": {
+        "more": false,
+        "subTitle": "",
+        "title": "最新服务",
+        "type": 2
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "个人版首页-最新服务-公租房申请",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "公租房申请",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/governmentnetservice/detail/90004400369398110313440300/:token",
+              "dynamicTitleEnable": true,
+              "productionURL": "https://smt-web.pingan.com.cn/smt/governmentnetservice/detail/90004400369398110313440300/:token",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-最新服务-公租房申请",
+            "identifier": "Service.GovernmentAffairs.PublicRentalHousingApplication",
+            "keyWord": "公租房申请",
+            "label": "",
+            "name": "公租房申请",
+            "nativePage": "OnlineAffairs",
+            "needLogin": true,
+            "type": "CustomH5",
+            "verifyTokenByServer": true
+          },
+          "title": "公租房申请"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "法律援助",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/governmentnetservice/detail/70000100100754174X16440300/:token",
+              "dynamicTitleEnable": true,
+              "productionURL": "https://smt-web.pingan.com.cn/smt/governmentnetservice/detail/70000100100754174X16440300/:token",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-最新服务-法律援助",
+            "identifier": "Service.GovernmentAffairs.LegalAid",
+            "keyWord": "法律援助",
+            "label": "",
+            "name": "法律援助",
+            "nativePage": "OnlineAffairs",
+            "needLogin": true,
+            "type": "CustomH5",
+            "verifyTokenByServer": true
+          },
+          "title": "法律援助"
+        },
+        {
+          "canShow": true,
+          "eventId": "个人版首页-最新服务-职业技能鉴定",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "职业技能鉴定",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/governmentnetservice/detail/90009600169558324813440300/:token",
+              "dynamicTitleEnable": true,
+              "productionURL": "https://smt-web.pingan.com.cn/smt/governmentnetservice/detail/90009600169558324813440300/:token",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-最新服务-职业技能鉴定",
+            "identifier": "Service.GovernmentAffairs.LegalAid",
+            "keyWord": "职业技能鉴定",
+            "label": "",
+            "name": "职业技能鉴定",
+            "nativePage": "OnlineAffairs",
+            "needLogin": true,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "title": "职业技能鉴定"
+        }
+      ],
+      "layout": 19,
+      "type": "LASTESTSERVICE"
+    },
+    {
+      "header": {
+        "more": true,
+        "title": "深圳市网上办事大厅",
+        "type": 3
+      },
+      "layout": 15,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "深圳市网上办事大厅",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-网上办事大厅-点击",
+        "identifier": "Service.NetHall",
+        "keyWord": "深圳市网上办事大厅",
+        "label": "",
+        "name": "深圳市网上办事大厅",
+        "nativePage": "NetworkOffice",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "GOVERN"
+    },
+    {
+      "header": {
+        "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/3e2e665c-22e4-4203-b289-14ad47853602_1541054792219",
+        "lineColor": "#30C1A4",
+        "more": true,
+        "subTitle": "",
+        "title": "智慧交通",
+        "type": 2
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "电子证件",
+              "debugURL": "",
+              "dynamicTitleEnable": false,
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-智慧交通-深圳电子证件",
+            "extension": "13",
+            "identifier": "Service.TrafficPolice.ElectronicCertificate",
+            "keyWord": "电子证件",
+            "label": "",
+            "name": "电子证件",
+            "nativePage": "StaruserNativeService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "深圳电子证件"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "电子保单",
+              "debugURL": "http://61.144.225.4:8080/szjjwxyw_mysz/szjj/szjj_checkJJyw.action?ywlx=dzbdcx&lrly=pamysz&sqm=sqm&sfzhm=sfzhm&sjh=sjh",
+              "dynamicTitleEnable": false,
+              "productionURL": "http://61.144.225.4:8080/szjjwxyw_mysz/szjj/szjj_checkJJyw.action?ywlx=dzbdcx&lrly=pamysz&sqm=sqm&sfzhm=sfzhm&sjh=sjh",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-智慧交通-电子保单",
+            "extension": "0",
+            "identifier": "Service.TrafficPolice.ElectronicWarranty",
+            "keyWord": "电子保单",
+            "label": "",
+            "name": "电子保单",
+            "nativePage": "StaruserWebservice",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "电子保单"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "远程事故处理",
+              "debugURL": "https://103.28.214.24:28443/icp-tara/do/page/changePage",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://124.250.88.166/icp-tara/do/page/changePage",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-智慧交通-远程事故处理",
+            "identifier": "Service.TrafficPolice.RemoteIncidentHandling",
+            "keyWord": "远程事故处理",
+            "label": "",
+            "name": "远程事故处理",
+            "nativePage": "RemoteAccident",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "远程事故处理"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "驾驶证业务",
+              "debugURL": "",
+              "dynamicTitleEnable": false,
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-智慧交通-驾驶证业务",
+            "extension": "3",
+            "identifier": "Service.TrafficPolice.Driver'sLicense",
+            "keyWord": "驾驶证业务",
+            "label": "",
+            "name": "驾驶证业务",
+            "nativePage": "StaruserNativeService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "驾驶证业务"
+        }
+      ],
+      "layout": 16,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "智慧交通",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-智慧交通-更多服务",
+        "identifier": "Service.NetHall.SmartTransportation",
+        "keyWord": "智慧交通",
+        "label": "",
+        "name": "智慧交通",
+        "nativePage": "SmartTransportation",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "SMART_TRANSPORTATION"
+    },
+    {
+      "header": {
+        "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/4c85099b-0cdd-4ca6-bb55-36ac3b7c7ec1_1541054792528",
+        "lineColor": "#1483EE",
+        "more": true,
+        "subTitle": "",
+        "title": "社会保障",
+        "type": 2
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/df4041e6-2a4e-4420-a255-475fc1de9a35_1534982843318",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "社保查询",
+              "debugURL": "https://test1-city.pingan.com.cn/static/public/webapp/foundation/socialQuery/index.html#/main?cityCode=440300",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/webapp/foundation/socialQuery/index.html#/main?cityCode=440300",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-社会保障-社保查询",
+            "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/69df31ce-ba61-4d72-aaed-a82cda3f0b3e_1533136280940",
+            "identifier": "01_Other_SocialSecurity",
+            "keyWord": "社保查询",
+            "label": "",
+            "name": "社保查询",
+            "nativePage": "SocialQuery",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "社保查询"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/99e40ea0-4a01-4e92-99e1-322dd6f2bb02_1527225679819",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "社保网点",
+              "debugURL": "https://test1-city.pingan.com.cn/static/public/webapp/foundation/socialServiceSite/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/webapp/SMT/socialServiceSite/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-社会保障-社保网点",
+            "identifier": "Service.SocialSecurity.SocialSecurityOutlets",
+            "keyWord": "社保网点",
+            "label": "",
+            "name": "社保网点",
+            "nativePage": "SocialNetwork",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "社保网点"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "社保测算",
+              "debugURL": "https://test1-city.pingan.com.cn/static/public/webapp/foundation/socialCalculate/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/webapp/SMT/socialCalculate/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-社会保障-社保测算",
+            "identifier": "Service.SocialSecurity.SocialSecurityMeasurement",
+            "keyWord": "社保测算",
+            "label": "",
+            "name": "社保测算",
+            "nativePage": "SocialCalculator",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "社保测算"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/58d7c820-a366-46f3-bba6-69db85195966_1527225679415",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "医保网点",
+              "debugURL": "https://test1-city.pingan.com.cn/static/public/webapp/foundation/medicalServiceSite/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/webapp/SMT/medicalServiceSite/index.html#/?cityCode=440300&cityName=%e6%b7%b1%e5%9c%b3",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-社会保障-医保网点",
+            "identifier": "Service.SocialSecurity.MedicalInsuranceOutlets",
+            "keyWord": "医保网点",
+            "label": "",
+            "name": "医保网点",
+            "nativePage": "SocialMedicalNetwork",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "医保网点"
+        }
+      ],
+      "layout": 16,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "社会保障",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-社会保障-更多服务",
+        "extension": "SOCIAL",
+        "identifier": "Service.NetHall.SOCIAL",
+        "keyWord": "社会保障",
+        "label": "",
+        "name": "社会保障",
+        "nativePage": "ALL",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "SOCIAL"
+    },
+    {
+      "header": {
+        "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/27852bbd-75ca-4b21-9b41-a65fc8ec09e5_1545355716014",
+        "more": true,
+        "subTitle": "",
+        "title": "医疗健康",
+        "type": 2
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/e1726811-5b44-4da7-80ce-0c3d6f88ab18_1542701571311",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "在线问诊",
+              "debugURL": "https://test.pajk.cn/landing_unionlogin?failUrl=https://www.test.pajk.cn/ylx-portal/error.html?type=network&biz=SMT&redirectCode=0090001&failRedirect=true&",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://www.jk.cn/landing_unionlogin?failUrl=https://www.jk.cn/ylx-portal/error.html?type=network&biz=SMT&redirectCode=0090001&failRedirect=true&",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "在线问诊",
+            "label": "病人用户",
+            "name": "在线问诊",
+            "nativePage": "MedicalOnlineInquiry",
+            "needLogin": true,
+            "type": "ButtedH5",
+            "verifyTokenByServer": true
+          },
+          "title": "在线问诊"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "智能自诊",
+              "debugURL": "https://test1-city.pingan.com.cn/static/public/health-app/healthdiagnose/index.html",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/health-app/healthdiagnose/index.html",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-医疗健康-智能自诊",
+            "identifier": "Service.MedicalAndHealth.IntelligentSelfDiagnosis",
+            "keyWord": "智能自诊",
+            "label": "",
+            "name": "智能自诊",
+            "nativePage": "MedicalHealthDiagnose",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "智能自诊"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/bd340cd8-3b88-4b07-b1a9-f61db46ca985_1527225679005",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "疾病助手",
+              "debugURL": "https://test-mhis-siapp.pingan.com.cn/static/public/health-app/disease/index.html",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/health-app/disease/index.html",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-医疗健康-疾病助手",
+            "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/bd340cd8-3b88-4b07-b1a9-f61db46ca985_1527225679005",
+            "identifier": "01_Healthy_DiseaseAssistant",
+            "keyWord": "疾病助手",
+            "label": "病人用户",
+            "name": "疾病助手",
+            "nativePage": "MedicalDiseaseAssistant",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "",
+          "title": "疾病助手"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "药品助手",
+              "debugURL": "https://test-mhis-siapp.pingan.com.cn/static/public/health-app/medical/index.html",
+              "dynamicTitleEnable": false,
+              "productionURL": "https://city.pingan.com.cn/static/public/health-app/medical/index.html",
+              "showCloseButton": false,
+              "useNativeNavigationBar": false
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-医疗健康-药品助手",
+            "identifier": "Service.MedicalAndHealth.DrugAssistant",
+            "keyWord": "药品助手",
+            "label": "",
+            "name": "药品助手",
+            "nativePage": "MedicalDrugsAssistant",
+            "needLogin": false,
+            "type": "ButtedH5",
+            "verifyTokenByServer": false
+          },
+          "title": "药品助手"
+        }
+      ],
+      "layout": 16,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "医疗健康",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-医疗健康-更多服务",
+        "extension": "MEDICAL",
+        "identifier": "Service.All.Medical",
+        "keyWord": "医疗健康",
+        "label": "",
+        "name": "医疗健康",
+        "nativePage": "ALL",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "MEDICAL"
+    },
+    {
+      "header": {
+        "more": true,
+        "subTitle": "已入驻16家行政单位为您服务",
+        "title": "政府部门",
+        "type": 3
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/9c60516f-eb31-4904-b2ef-dde6ba39a102_1540885170253",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市民政局",
+            "extension": "440300,007542195",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市民政局",
+            "label": "",
+            "name": "深圳市民政局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市民政局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/7751baaa-b7ba-494d-8f7e-4dcf3e21e341_1540794880862",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市人社局",
+            "extension": "440300,695583248",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市人社局",
+            "label": "",
+            "name": "深圳市人力资源和社会保障局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市人社局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/e64a8732-fcec-439b-9836-00610f809d41_1540885170369",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市教育局",
+            "extension": "440300,007542814",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市教育局",
+            "label": "",
+            "name": "深圳市教育局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市教育局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/444d038c-1b13-4c85-8bb5-58399f334524_1540794879893",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市住建局",
+            "extension": "440300,693981103",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市住建局",
+            "label": "",
+            "name": "深圳市住房和建设局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市住建局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/0fb1d893-982d-4040-a3c4-78119770352d_1540885169215",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市卫计委",
+            "extension": "440300,693956469",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市卫计委",
+            "label": "",
+            "name": "深圳市卫生和计划生育委员会",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市卫计委"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/2a7c2b6b-f606-4c19-89e7-4e5125a014c2_1540885169338",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市水务局",
+            "extension": "440300,007541512",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市水务局",
+            "label": "",
+            "name": "深圳市水务局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市水务局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/929392c8-19ed-4b37-8216-59a7a7517e9f_1540885169939",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市气象局",
+            "extension": "440300,455753228",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市气象局",
+            "label": "",
+            "name": "深圳市气象局",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市气象局"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/87f0bbd2-6ebc-4196-9993-0b720b889e46_1540885169621",
+          "service": {
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-政府部门-市交委",
+            "extension": "440300,693951377",
+            "identifier": "Service.MedicalAndHealth.OnlineConsultation",
+            "keyWord": "市交委",
+            "label": "",
+            "name": "深圳市交通运输委员会",
+            "nativePage": "DepartmentService",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "56项服务",
+          "title": "市交委"
+        }
+      ],
+      "layout": 17,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "政府部门",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-政府部门-政府部门",
+        "extension": "",
+        "identifier": "Service.doBusinessByBuwei",
+        "keyWord": "政府部门",
+        "label": "",
+        "name": "政府部门",
+        "nativePage": "HandleAffair",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "GovDepartment"
+    },
+    {
+      "banners": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/09eeb05b-4ad1-4d66-a30d-bbb0063d542b_1541154286627",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "东部华侨城",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/recommend/scenic/1",
+              "productionURL": "https://smt-web.pingan.com.cn/smt/recommend/scenic/1",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-深圳印象-banner",
+            "identifier": "Service.ShenzhenImpression.EasternChinatown",
+            "keyWord": "东部华侨城",
+            "label": "东部华侨城",
+            "name": "东部华侨城",
+            "nativePage": "",
+            "needLogin": false,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "深圳八景 | 必游TOP10",
+          "title": "东部华侨城"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/42a18857-4bfb-45e3-a270-3a9a14184fdc_1541154285095",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "世界之窗",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/recommend/scenic/2",
+              "productionURL": "https://smt-web.pingan.com.cn/smt/recommend/scenic/2",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-深圳印象-banner",
+            "identifier": "Service.ShenzhenImpression.WindowOfTheWorld",
+            "keyWord": "世界之窗",
+            "label": "世界之窗",
+            "name": "世界之窗",
+            "nativePage": "",
+            "needLogin": false,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "5A景区 | 主题公园",
+          "title": "世界之窗"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/a426b1b1-e585-41f9-843a-4120a53bbb3d_1541154286027",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "西涌",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/recommend/scenic/3",
+              "productionURL": "https://smt-web.pingan.com.cn/smt/recommend/scenic/3",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-深圳印象-banner",
+            "identifier": "Service.ShenzhenImpression.XiChong",
+            "keyWord": "西涌",
+            "label": "西涌",
+            "name": "西涌",
+            "nativePage": "",
+            "needLogin": false,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "subTitle": "海滨度假 | 自然风光",
+          "title": "西涌"
+        }
+      ],
+      "header": {
+        "more": true,
+        "subTitle": "",
+        "title": "深圳印象",
+        "type": 2
+      },
+      "items": [
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/e7a0a4ac-2699-4a99-be46-f9d773fe6ba9_1541057925492",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "魅力深圳",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/impression/1",
+              "productionURL": "https://smt-web.pingan.com.cn/smt/impression/1",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-深圳印象-魅力深圳",
+            "identifier": "Service.ShenzhenImpression.CharmingShenzhen",
+            "keyWord": "魅力深圳",
+            "label": "",
+            "name": "魅力深圳",
+            "nativePage": "魅力深圳",
+            "needLogin": false,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "title": "魅力深圳"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/1b5b6ea7-2ab4-4825-8afe-126c074cd0a6_1541057925097",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "身边的志愿者",
+              "debugURL": "",
+              "productionURL": "",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": true,
+            "eventId": "个人版首页-深圳印象-志愿者在身边",
+            "identifier": "Service.ShenzhenImpression.Volunteer",
+            "keyWord": "志愿者",
+            "label": "",
+            "name": "身边的志愿者",
+            "nativePage": "AroundVolunteer",
+            "needLogin": false,
+            "type": "Native",
+            "verifyTokenByServer": false
+          },
+          "title": "志愿者在身边"
+        },
+        {
+          "canShow": true,
+          "eventId": "01首页",
+          "icon": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/5fb1dc77-290f-408d-b3b6-6c9e2e139e9d_1541057925729",
+          "service": {
+            "H5Info": {
+              "customWebTitle": "港澳通关贴士",
+              "debugURL": "https://smt-web-stg.pingan.com.cn/smt/port/tips",
+              "productionURL": "https://smt-web.pingan.com.cn/smt/port/tips",
+              "showCloseButton": false,
+              "useNativeNavigationBar": true
+            },
+            "checkLocationPermission": false,
+            "eventId": "个人版首页-深圳印象-港澳通关贴士",
+            "identifier": "Service.ShenzhenImpression.CustomsTips",
+            "keyWord": "港澳通关贴士",
+            "label": "",
+            "name": "港澳通关贴士",
+            "nativePage": "",
+            "needLogin": false,
+            "type": "CustomH5",
+            "verifyTokenByServer": false
+          },
+          "title": "港澳通关贴士"
+        }
+      ],
+      "layout": 18,
+      "service": {
+        "H5Info": {
+          "customWebTitle": "深圳印象",
+          "debugURL": "",
+          "dynamicTitleEnable": false,
+          "productionURL": "",
+          "showCloseButton": false,
+          "useNativeNavigationBar": false
+        },
+        "checkLocationPermission": false,
+        "eventId": "个人版首页-深圳印象-详情页",
+        "identifier": "Service.NetHall",
+        "keyWord": "深圳印象",
+        "label": "",
+        "name": "深圳印象",
+        "nativePage": "Impression",
+        "needLogin": false,
+        "type": "Native",
+        "verifyTokenByServer": false
+      },
+      "type": "SZ_IMPRESSION"
+    }
+  ],
+  "setting": {
+    "bannerClipImage": "http://iobs.pingan.com.cn/download/szsc-smt-app-dmz-prd/344e4cff-0085-4131-a7b5-c7d56b436e48_1540974518803",
+    "hasMessageIcon": true,
+    "hasWeatherIcon": true
+  }
+}
