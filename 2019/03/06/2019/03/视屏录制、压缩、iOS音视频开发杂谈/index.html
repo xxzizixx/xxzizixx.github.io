@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>视屏录制、压缩、iOS音视频开发杂谈 | Bryan Yang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="视屏录制、压缩、iOS音视频开发杂谈 | Bryan Yang">
+    <meta name="twitter:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="视屏录制、压缩、iOS音视频开发杂谈 | Bryan Yang">
+    <meta property="og:description" content="嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。">
+
+    
+    <meta name="author" content="Bryan Yang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://xxzizixx.github.io/2019/03/06/2019/03/视屏录制、压缩、iOS音视频开发杂谈/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Bryan Yang 的主页"><img src="/images/avatar.jpg" width="80" alt="Bryan Yang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Bryan Yang">Bryan Yang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">其修远兮，上下求索</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">嗨，我是杨彪，一名iOS开发者，正在探索iOS求学之道。路漫漫兮修远兮，吾将上下而求索。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/xxzizixx" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2019-03-06T07:03:09.000Z" class="post-list__meta--date date">2019-03-06</time> &#8226; <span class="post-meta__tags tags">  </span>
+    </div>
+    <h1 class="post-title">视屏录制、压缩、iOS音视频开发杂谈</h1>
+  </header>
+
+  <section class="post">
+    <h1 id="视频录制"><a href="#视频录制" class="headerlink" title="视频录制"></a>视频录制</h1><p>先看一张iOS录制方式的总结UML类图：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1g0t3dd5gwyj31gd0irgpb.jpg" alt=""></p>
+<h2 id="UIImagePickerController"><a href="#UIImagePickerController" class="headerlink" title="UIImagePickerController"></a>UIImagePickerController</h2><ul>
+<li><strong>UIImagePickerController</strong>：系统的相机控制器，只能设置一些简单参数(如视频的画质等)，自定义程度不高，只能自定义界面上的操作按钮。</li>
+</ul>
+<h2 id="AVFoundation"><a href="#AVFoundation" class="headerlink" title="AVFoundation"></a>AVFoundation</h2><ul>
+<li><p><strong>AVFoundation</strong>：是一个可以用来使用和创建基于媒体的框架，它提供了一个能使用基于视频监听数据的接口。类图中的<strong>AVCaptureMovieFileOutput</strong>和<strong>AVAssetWriter</strong>两种方式都是AVFoundation中的。</p>
+</li>
+<li><p><strong>AVCaptureSession(捕捉会话)</strong>：从捕捉设备(如摄像头、麦克风)得到数据流，输出到一个或多个目的地。AVCaptureSession可以动态配置输入输出(如前后摄像头)的线路，在会话进行中按需重新配置捕捉环境。 AVCaptureSession 可以额外配置一个会话预设值(preset，默认是高质量AVCaptureSessionPresetHigh),用来控制捕捉数据的质量。</p>
+</li>
+<li><p><strong>AVCaptureDeviceInput(捕捉设备的输入)</strong>：在使用捕捉设备进行处理之前，需要将它添加到捕捉会话的输入。不过一个设备不能直接添加到AVCaptureSession 中，需要利用 AVCaptureDeviceInput 的一个实例封装起来添加。</p>
+</li>
+<li><p><strong>AVCaptureDevice(捕捉设备)</strong>：针对物理硬件设备(如控制摄像头的对焦、曝光、白平衡和闪光灯等)定义了大量的控制方法。 </p>
+</li>
+<li><p><strong>AVCaptureOutput</strong> 捕捉设备的输出 - 如上文所提，AVCaptureSession 会从AVCaptureDevice拿数据流，并输出到一个或者多个目的地，这个目的地就是 AVCaptureOutput。<br>AVCaptureOutput是一个基类，AVFoundation为我们提供了 四个 扩展类:  </p>
+<ul>
+<li>AVCaptureStillImageOutput 捕捉静态照片（拍照） </li>
+<li>AVCaptureMovieFileOutput  捕捉视频（视频 + 音频） </li>
+<li>AVCaptureVideoDataOutput  视频录制数据流 </li>
+<li>AVCaptureAudioDataOutput  音频录制数据流 </li>
+</ul>
+</li>
+</ul>
+<p>其中AVCaptureVideoDataOutput和AVCaptureAudioDataOutput不停地往AVAssetWriter传递VideoSampleBuffer和AudioSampleBuffer，AVAssetWriter对VideoSampleBuffer做分辨率压缩，以及对AudioSampleBuffer做码率压缩，以便可以更好的进行音频视频实时处理。对于以上四者的关系，类似于 AVCaptureSession 是过滤器，AVCaptureDevice 是“原始”材料，AVCaptureDeviceInput 是 AVCaptureDevice 的收集器，AVCaptureOutput 就是产物了。</p>
+<ul>
+<li><strong>AVCaptureConnection</strong> 捕捉连接 - 那么问题来了，上面四者之间的“导管”是什么呢？那就是 AVCaptureConnection。利用AVCaptureConnection 可以很好的将这几个独立的功能件很好的连接起来。 </li>
+<li><strong>AVCaptureVideoPreviewLayer</strong> 捕捉预览，以上所有的数据处理，都是在代码中执行的，用户无法看到AVCaptureSession到底在做什么事情。所以AVFoundation 为我们提供了一个叫做 AVCaptureVideoPreviewLayer 的东西，提供实时预览。AVCaptureVideoPreviewLayer 是 CoreAnimation 的 CALayer 的子类。<br>关于预览层的填充模式有 AVLayerVideoGravityResizeAspect、AVLayerVideoGravityResizeAspectFill、AVLayerVideoGravityResize三种</li>
+</ul>
+<h2 id="AVCaptureMovieFileOutput和AVAssetWriter的异同："><a href="#AVCaptureMovieFileOutput和AVAssetWriter的异同：" class="headerlink" title="AVCaptureMovieFileOutput和AVAssetWriter的异同："></a>AVCaptureMovieFileOutput和AVAssetWriter的异同：</h2><p><strong>相同点</strong>：两者的输入基本是一样的，数据采集都在AVCaptureSession中进行，视频和音频的输入都一样，画面的预览等也一致。</p>
+<p><strong>不同点</strong>：两者最大的不同就是输出方式不一致。</p>
+<ul>
+<li><strong>AVCaptureMovieFileOutput</strong>只需要一个输出即可，指定一个文件路后，视频和音频会写入到指定路径，不需要其他复杂的操作。这是它的使用优点，但同时也带了音视频不能在录制的时候就进行处理，只能先读文件再进行处理，这样也造成了它耗时的缺点等等。</li>
+<li><strong>AVAssetWriter</strong>需要AVCaptureVideoDataOutput和AVCaptureAudioDataOutput两个单独的输出，拿到各自的输出数据后，然后自己进行相应的处理，这种方式处理非常灵活。</li>
+</ul>
+<p>附上<a href="https://objccn.io/issue-23-1/" target="_blank" rel="noopener">在Objc中国:【iOS上捕获视频】</a>中的图和建议：<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0t3el933wj30hc0e6myl.jpg" alt=""><br><strong>AVCaptureDataOutput 和 AVAssetWriter<br>如果你想要对影音输出有更多的操作，你可以使用 AVCaptureVideoDataOutput 和 AVCaptureAudioDataOutput 而不是我们上节讨论的 AVCaptureMovieFileOutput。<br>这些输出将会各自捕获视频和音频的样本缓存，接着发送到它们的代理。代理要么对采样缓冲进行处理 (比如给视频加滤镜)，要么保持原样传送。使用 AVAssetWriter 对象可以将样本缓存写入文件。</strong></p>
+<p>想要深入研究自定义相机并做更多复杂处理的，这里推荐一个参考库<a href="https://github.com/piemonte/PBJVision" target="_blank" rel="noopener">PBJVision</a> ，或许能给你一些启发🤔。<br><br><br><br></p>
+<h1 id="二、视频压缩"><a href="#二、视频压缩" class="headerlink" title="二、视频压缩"></a>二、视频压缩</h1><p>iOS视频压缩是用AVFoundation中的<strong>AVAssetExportSession</strong>这个类来进行处理的，AVAssetExportSession是对AVAsset对象内容进行转码, 并输出到制定的路径;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">默认初始化方法</span><br><span class="line">- (nullable instancetype)initWithAsset:(AVAsset *)asset presetName:(NSString *)presetName NS_DESIGNATED_INITIALIZER;</span><br></pre></td></tr></table></figure></p>
+<p>其中的的参数分别是：<br>asset, 参数为要转码的asset对象;<br>presetName, 该参数为要进行转码的方式名称, 为字符串类型, 系统有给定的类型值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">AVF_EXPORT NSString *const AVAssetExportPresetLowQuality         NS_AVAILABLE(10_祝你：生日快乐！幸福、平安！ 杨辉 , 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPresetMediumQuality      NS_AVAILABLE(10_祝你：生日快乐！幸福、平安！ 杨辉 , 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPresetHighestQuality     NS_AVAILABLE(10_祝你：生日快乐！幸福、平安！ 杨辉 , 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPreset640x480           NS_AVAILABLE(10_7, 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPreset960x540           NS_AVAILABLE(10_7, 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPreset1280x720          NS_AVAILABLE(10_7, 4_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPreset1920x1080         NS_AVAILABLE(10_7, 5_0);</span><br><span class="line">AVF_EXPORT NSString *const AVAssetExportPreset3840x2160         NS_AVAILABLE(10_10, 9_0);</span><br></pre></td></tr></table></figure></p>
+<p><strong>注：AVAssetExportSession默认使用的音频编码格式是AAC，视频编码格式是H.264。</strong></p>
+<p>此外还需要设置两个属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 转码后视频的输出类型</span><br><span class="line">exportSession.outputFileType = AVFileTypeMPEG4;</span><br><span class="line">// 转码后视频的输出路径</span><br><span class="line">exportSession.outputURL = [NSURL fileURLWithPath:outPath];</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>AVAssetExportSession是苹果在AVFoundation框架中提供的，使用起来也比较简单，当然同时也比较单一，只能使用一套转码预设，如果不满足你的需求，可以看看这个<a href="https://github.com/rs/SDAVAssetExportSession" target="_blank" rel="noopener">SDAVAssetExportSession</a>🤔，或许会对你有所帮助。</p>
+<p><br><br><br></p>
+<h1 id="三、客户端音视频开发"><a href="#三、客户端音视频开发" class="headerlink" title="三、客户端音视频开发"></a>三、客户端音视频开发</h1><p>既然说到了视频的录制和压缩，那么索性再理论性的探讨下客户端音视频开发的流程。😄</p>
+<h3 id="1、什么是客户端音视频开发呢？"><a href="#1、什么是客户端音视频开发呢？" class="headerlink" title="1、什么是客户端音视频开发呢？"></a>1、什么是客户端音视频开发呢？</h3><p>音视频开发就是将采集到的音频和视频数据流持续的输出到显示器进行显示。我一般通俗的将它理解成：画画和放歌。</p>
+<h4 id="画什么画❓"><a href="#画什么画❓" class="headerlink" title="画什么画❓"></a>画什么画❓</h4><blockquote>
+<p>解码采集到的视频数据流，将它画成一帧帧画面 </p>
+</blockquote>
+<h4 id="放什么歌❓"><a href="#放什么歌❓" class="headerlink" title="放什么歌❓"></a>放什么歌❓</h4><blockquote>
+<p>解码采集到的音频数据流，进行播放</p>
+</blockquote>
+<p><br></p>
+<h3 id="2、音视频数据从哪里来❓"><a href="#2、音视频数据从哪里来❓" class="headerlink" title="2、音视频数据从哪里来❓"></a>2、音视频数据从哪里来❓</h3><p>“画画”和“放歌”首先的有数据吧，那么数据从哪里来呢？对于客户端来说，并不关心数据到底是从硬件设备(智能手机摄像头采集)还是从服务器(远程主播设备的摄像头采集)到的，这些都有现成的许多框架，它都帮我们封装了很多功能。<br>音视频开发有三大步骤：</p>
+<ul>
+<li>传输层</li>
+<li>编解码</li>
+<li>渲染输出</li>
+</ul>
+<p><strong>传输层：</strong>解决数据哪来的问题。音视频开发讲究的是实时性，而且也需要持续输出，所以音视频开发都是进行长链接的，<br><strong>编解码：</strong>负责数据压缩传输和解压输出问题 (编解码又分硬解和软解，手机硬件解码称为硬解，利用算法消耗CPU资源解码称为软解如ffmpeg)<br><strong>渲染输出：</strong>负责渲染视频数据和将音频数据传给手机麦克风或者耳机进行播放(画面渲染就是OpenGL, 音频输出就是Audio Unit)</p>
+<p><br></p>
+<h3 id="3、什么是数据❓"><a href="#3、什么是数据❓" class="headerlink" title="3、什么是数据❓"></a>3、什么是数据❓</h3><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g0t3f94816j30pq04smxo.jpg" alt=""></p>
+<p>通过与服务器进行长链接，接收服务器传过来的持续不断的数据流。那么问题又来了，这些数据流是以什么样的方式进行传输呢？<br><a href="https://blog.csdn.net/caoshangpa/article/details/51530685" target="_blank" rel="noopener">网络传输TCP传输一个包大小</a>最大是有限制的，音视频的数据比较大，需要很多个包进行传输，也就形成了数据流，而且这些传输数据中还分音频和视频数据，一下子传过来我们该怎么识别呢？这里提出两个问题：</p>
+<blockquote>
+<p>1、传给我的是什么数据？<br>2、传给我的数据到底有多大？</p>
+</blockquote>
+<p>带着这两个问题，可能很容易就想到：客户端是不是应该和服务器之前商定一个传输规则？<br>是的，没错，服务器过来的数据一般都是遵循了这么一个协议的数据<strong>TLV</strong>，看上面那张图：</p>
+<ul>
+<li><p><strong>type</strong>：传输的是音频/视频？</p>
+</li>
+<li><p><strong>length</strong>：传输的音频/ 视频多长?</p>
+</li>
+<li><p><strong>value</strong>：音频/视频数据</p>
+</li>
+</ul>
+<p>type和length这两个很好理解，那么作为音频或者是视频数据的value又是什么样的类型呢？<br>相信大家都<strong>AAC/H.264</strong>这些名词都早有耳闻了，没错，value传输的就是这种类型，当type类型是音频的时候传输的是AAC格式的音频数据，当type类型是视频的时候传输的是H.264格式的音频数据(当然还有其他的音频格式如WAV/MP3/Ogg，视频格式有H.261/H.262/H.263等等)。</p>
+<p><strong>但这里要说明一点</strong>：服务器传输的value类型虽然是AAC/H.264，但这并不是说最初我们采集到的数据就是AAC/H.264了。最开始摄像头采集到的视频数据是YUV格式的，麦克风采集到的音频数据是PCM格式的；但是“一帧画面”的YUV格式数据非常大，不便于传输，所以将其压缩成H.264格式的便于传输，这个过程就是我们常说的编码。音频数据PCM格式压缩成AAC格式也是同样的道理。</p>
+<p>这个时候我们客户端接收到数据就和容易识别了：收到的数据前面多少个字节是表示数据类型，多少个字节是表示数据大小，后面剩余的就是该类型的实际数据了。</p>
+<p><br></p>
+<h3 id="4、编码解码"><a href="#4、编码解码" class="headerlink" title="4、编码解码"></a>4、编码解码</h3><p>前面说过了YUV和PCM格式的数据太大，不便于传输，将其压缩成H.264和AAC格式的进行传输，这个压缩过程就是编码。</p>
+<p>此时客户端收到了服务器的数据，虽然知道了是什么类型的数据，也知道了数据的大小，但是依然显示不出来，这是是为什么呢？<br>因为手机只认识RGB和PCM格式，什么H.264/AAC它根本就不知道是什么鬼东西。</p>
+<p>what？RGB又出来了，那刚刚说的采集的YUV又是什么鬼？<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0t3fmwibgj3064064t8v.jpg" alt=""></p>
+<p><strong>RGB</strong>：这个就不解释了吧，不知道的面壁去～。在屏幕上看到的图片呀文字呀, 都是许多由一个一个的像素拼接起来的, 每一个像素点的数据就是RGB, 所以你看到的图片文字,你在你手机电脑上看到的任何东西都是许多红色、绿色、蓝色组合成的。</p>
+<p><strong>YUV</strong>：视频帧的裸数据表示形式，主要用于优化彩色视频信号的传输，使其向后兼容老式的黑白电视机。<br>这样解释YUV你可能还是有点懵逼，好吧，那通俗点说就是：<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g0t3g6exdsj30j60693yw.jpg" alt=""></p>
+<p><strong>Y：</strong>表示明亮度(Luminance或Luma)，也称灰阶值，简单来说就是表示黑白的；</p>
+<p><strong>UV：</strong>表示色度(Chrominance或Chroma)，他的作用是描述影像的色彩及饱和度的，用于指定像素的颜色。<br>老式的黑白电视机就是只有Y信号分量而没有U、V信号分量，表示的就是黑白灰度图像。</p>
+<p>那RGB和YUV的关系是什么呢? RGB和YUV都可以通过对方,进行一个矩阵计算的得到, RGB通过一个矩阵计算可以生成YUV,  YUV可以通过一个矩阵计算生成RGB.<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0t3gi7vpcj307w04t0sy.jpg" alt=""></p>
+<p><a href="https://blog.csdn.net/asahinokawa/article/details/80596655" target="_blank" rel="noopener">想了解更多RGB和YUV的可以点击这里</a></p>
+<p><br></p>
+<p>所以手机说手机要YUV或者RGB都没问题.可以计算得到的.那怎么得到YUV了?<br>将接收到的value中通过压缩得到的H.264解码不久得到YUV了嘛。这个过程就是常说的解码了。</p>
+<p>解码又分硬解和软解；</p>
+<ul>
+<li>硬解：手机通过自身的硬解模块进行解码</li>
+<li>软解：就是利用设计的算法程序通过，消耗CPU的资源来进行解码，如FFmpeg。</li>
+</ul>
+<p><br></p>
+<h3 id="5、渲染输出"><a href="#5、渲染输出" class="headerlink" title="5、渲染输出"></a>5、渲染输出</h3><p>通过上面的解码，我们得到了YUV和AAC。</p>
+<p>音频播放：将AAC数据给audio unit，由audio unit解码得到PCM之后拿给硬件，硬件就可以播放了。</p>
+<p>视频播放：如需要RGB可以通过计算YUV得到RGB，其实RGB/YUV就是一帧画面的一个像素点，视频的本质其实就是一帧帧画面组成的，一般视频每秒大概25～30帧，我们能看到视频是连续的而不是一张张图片播放是因为人眼一般识别帧数是24/s左右。</p>
+<p>既然知道了每个像素点，那就开始“画画”(渲染)吧～</p>
+<p>怎么画？ 用OpenGL画。<br>至于怎么用OpenGL画？那这个就有点大了，2D的平面还好说，3D的立体效果那就得靠各位自己去研究了。</p>
+<p>渲染大致过程这里以FFmpeg软解为例：利用CPU完成渲染所需的计算，并将计算结果提交到GPU进行合成、变换、渲染，渲染完成后把渲染结果提交到帧缓冲区去，等待下一次 VSync 信号到来时显示到屏幕上，这样我们就能看到画面了。</p>
+<p><br></p>
+<p><strong>总结</strong>：以上就是视频录制、压缩和客户端音视频开发理论流程，当然实际开发中有许多的细节，远不止这东西，如果大家有兴趣的话可以深入研究。</p>
+<p><br></p>
+<p><strong>参考文档：</strong><br><a href="https://objccn.io/issue-23-1/" target="_blank" rel="noopener">在Objc中国:【iOS上捕获视频】</a><br><a href="http://gcblog.github.io/2017/03/22/iOS%E4%B8%89%E7%A7%8D%E5%BD%95%E5%88%B6%E8%A7%86%E9%A2%91%E6%96%B9%E5%BC%8F%E8%AF%A6%E7%BB%86%E5%AF%B9%E6%AF%94/" target="_blank" rel="noopener">iOS三种录制视频方式详细对比</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207686973&amp;idx=1&amp;sn=1883a6c9fa0462dd5596b8890b6fccf6&amp;3rd=MzA3MDU4NTYzMw==&amp;scene=6#rd" target="_blank" rel="noopener">iOS小视频优化心得</a><br><a href="https://juejin.im/entry/5787814179bc44005fbd61c6" target="_blank" rel="noopener">iOS小视频功能开发优化记录</a><br><a href="https://blog.csdn.net/asahinokawa/article/details/80596655" target="_blank" rel="noopener">对颜色空间YUV、RGB的理解</a><br><a href="https://www.jianshu.com/p/1fdcae98191c" target="_blank" rel="noopener">iOS音视频开发闲谈</a></p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/12/13/2018/12/基于OAuth2和SSO的开放平台/" title="基于OAuth2的开放平台">基于OAuth2的开放平台</a></h2>
+                <p class="excerpt">
+                
+                
+前序最近部门搭建了一个基于OAuth2的统一用户认证开放平台，因为是搭建初期，文档和平台建设还不够完善，需要对接的第三方又比较多，所以大伙都在忙着充当一个“开放平台客服”的角色在忙着辅助第三方接入平台的事情。那么，既然是辅助别人接入，首先我们自己就得搞清楚以下两个问题：
+
+什么是开放平台?
+什么是
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-12-13T10:51:19.000Z" class="post-list__meta--date date">2018-12-13</time> &#8226; <span class="post-list__meta--tags tags"> </span><a class="btn-border-small" href="/2018/12/13/2018/12/基于OAuth2和SSO的开放平台/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; Bryan Yang - xxzizixx@163.com
+       
+    </span>
+
+    <span class="footer__copyright">
+          知识需要分享，很高兴能和大家一起探讨。如需转载，请注明出处，谢谢。
+       
+    </span>
+
+    <span class="footer__copyright">
+              如有疑问，请邮件我，看到后会第一时间回复您。祝您阅读愉快！
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+    
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

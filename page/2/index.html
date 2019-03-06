@@ -124,6 +124,20 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2015/08/13/2015/08/nil、Nil、NULL、NSNull区别以及给空对象发送消息/" title="link to post.title">nil、Nil、NULL、NSNull区别以及给空对象发送消息</a></h2>
+      <p class="excerpt">
+    
+      首先，OC中向nil发消息，程序是不会崩溃的。因为OC的函数调用都是通过objc_msgSend进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接返回，所以不会出现问题。视方法返回值，向nil发消息可能会返回nil(返回值为对象)、0（返回值为一
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2015-08-13T06:37:03.000Z" class="post-list__meta--date date">2015-08-13</time> &#8226; <span class="post-list__meta--tags tags"> 
+  
+</span><a class="btn-border-small" href="/2015/08/13/2015/08/nil、Nil、NULL、NSNull区别以及给空对象发送消息/">继续阅读</a></div>
+      <hr class="post-list__divider">
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2015/07/07/2015/07/Copy修饰和深浅复制以及NSMutableObject的修饰词/" title="link to post.title">Copy修饰和深浅复制以及NSMutableObject的修饰词</a></h2>
       <p class="excerpt">
     
